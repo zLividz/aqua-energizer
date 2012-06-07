@@ -7,12 +7,12 @@ public class Main
 {
 
     /**
-     * @param args
+     * Fonction principale
+     * @param args arguments de la ligne de commande
      */
     public static void main(String[] args)
     {
-        // TODO Auto-generated method stub
-
+         System.out.println("coucou");
     }
 
 }
