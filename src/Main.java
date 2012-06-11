@@ -4,10 +4,10 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 import Interface.Images;
-import Interface.MyCanvas;
+import Interface.MaFenetre;
 
 /**
- * 
+ * Classe principale d'entrée du programme
  * @author Petrolevb
  *
  */
@@ -15,8 +15,8 @@ public class Main
 {
 
     /**
-     * @param args
-     * @throws IOException 
+     * Entrée du programme
+     * @param args Parramêtre présent, mais a priori non utilisé
      */
     public static void main(String[] args)
     {
@@ -28,7 +28,7 @@ public class Main
         // TODO Auto-generated method stub
         JFrame frame = new JFrame();
         frame.setSize(810, 610);
-        frame.getContentPane().add(new MyCanvas());
+        frame.getContentPane().add(new MaFenetre());
         frame.setVisible(true);
     }
 

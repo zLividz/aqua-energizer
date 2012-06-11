@@ -8,9 +8,10 @@ import javax.imageio.ImageIO;
 
 /**
  * Ensemble des images pour le jeu
- * @author Petrolevb
+ * @author Vincent
  */
-@SuppressWarnings("nls") public class Images
+@SuppressWarnings("nls") 
+public class Images
 {
     
     /**
@@ -34,16 +35,16 @@ import javax.imageio.ImageIO;
         Porte = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
     }
     
-    /** L'image de la Vide. */
+    /** L'image du Vide. */
     static public Image Vide; 
     
-    /** L'image de la Indestructible. */
+    /** L'image de la Case Indestructible. */
     static public Image Indestructible;
     
     /** L'image de la Pierre. */
     static public Image Pierre; 
     
-    /** L'image de la Sable. */
+    /** L'image du Sable. */
     static public Image Sable;
     
     /** L'image de la Balle bleue. */
