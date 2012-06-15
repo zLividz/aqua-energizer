@@ -5,7 +5,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
-import Moteur.Personnage;
+import Exceptions.CaseException;
+import Moteur.Vivant.Personnage;
 
 /**
  * @author Vincent
@@ -15,13 +16,18 @@ public class MaFenetre extends JPanel implements KeyListener
 {
     /**
      * Constructeur de la classe
+     * @throws Exception Exception de conception
      */
-    public MaFenetre()
+    public MaFenetre() throws Exception
     {
         // Initialisation des champs
-        this.m_Personnage = new Personnage();
-        
-        
+        try
+        { this.m_Personnage = new Personnage(new Moteur.Constantes.Position(0, 0)); }
+        catch(CaseException e)
+        { 
+            System.err.println(e.getMessage()); 
+            throw new Exception("Erreur d'implementation sur la position initiale du joueur");
+        }
         
         // Initialisation de la fenetre
         setSize(Constantes.LargeurFenetre, Constantes.HauteurFenetre);
@@ -33,7 +39,7 @@ public class MaFenetre extends JPanel implements KeyListener
     
     // Champs
     
-    private Moteur.Personnage m_Personnage;
+    private Moteur.Vivant.Personnage m_Personnage;
     
     
     

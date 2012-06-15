@@ -1,19 +1,25 @@
-package Moteur;
+package Moteur.Vivant;
+
+import Exceptions.CaseException;
+import Moteur.Constantes;
+import Moteur.Constantes.Case;
+import Moteur.Constantes.Position;
 
 /**
  * Classe qui va définir le personnage
  * @author Vincent
- * @see Moteur.EtreVivant
+ * @see Moteur.Vivant.EtreVivant
  */
-public class Personnage implements Moteur.EtreVivant
+public class Personnage extends Moteur.Case implements Moteur.Vivant.EtreVivant 
 {
     /**
      * Constructeur de la classe
+     * @param p Position de départ du joueur
+     * @throws CaseException Excption levée si la position n'est pas correcte
      */
-    public Personnage()
+    public Personnage(Position p) throws CaseException
     {
-        this.m_Position.Ligne = 0;
-        this.m_Position.Colone = 0;
+        super(Case.Joueur, p);
     }
     
     @Override public void deplacement(Constantes.Direction directionDeplacement)
@@ -35,6 +41,5 @@ public class Personnage implements Moteur.EtreVivant
         }
     }
     
-    private Constantes.Position m_Position;
 
 }

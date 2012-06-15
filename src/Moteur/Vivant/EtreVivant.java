@@ -1,4 +1,6 @@
-package Moteur;
+package Moteur.Vivant;
+
+import Moteur.Constantes;
 
 /**
  * Interface qui va définir les fonctions essentielles des êtres vivants

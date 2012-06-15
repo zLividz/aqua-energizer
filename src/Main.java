@@ -25,11 +25,15 @@ public class Main
         catch(IOException e)
         { System.out.println(e.getMessage()); return; }
         
-        // TODO Auto-generated method stub
+        try
+        {
         JFrame frame = new JFrame();
         frame.setSize(810, 610);
         frame.getContentPane().add(new MaFenetre());
         frame.setVisible(true);
+        }
+        catch(Exception e)
+        { System.err.println(e.getMessage()); } 
     }
 
 }
