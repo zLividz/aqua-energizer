@@ -211,6 +211,12 @@ public class Map
     // Equivalent de savoir si la clef à été prise ou pas encore
     private boolean m_PortesOuvertes;
     
+    /** 
+     * Récupération de la map en cours
+     * @return Double Array List de Case
+     * @see Moteur.Case
+     */
+    public ArrayList< ArrayList<Moteur.Case> > getMap() { return this.m_Map; }
     private ArrayList< ArrayList<Moteur.Case> > m_Map;
     private int m_NombreBalleRouge;
 }

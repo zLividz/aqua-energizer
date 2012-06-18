@@ -182,7 +182,7 @@ public class Case
     /**
      * Récupère la position de la case
      * @return Retourne une structure position
-     * @see Moteur.Constantes.Position
+     * @see Constantes.Position
      */
     public Constantes.Position getPosition() { return this.m_Position; }
     /**
