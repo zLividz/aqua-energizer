@@ -32,8 +32,20 @@ public class Images
         
         Bombe = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
         Sortie = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
-        Porte = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
+        Porte = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
+        
+        Joueur = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
+        Crabe = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
+        Poisson = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
+        
     }
+
+    /** L'image du Vide. */
+    static public Image Joueur; 
+    /** L'image du Vide. */
+    static public Image Crabe; 
+    /** L'image du Vide. */
+    static public Image Poisson; 
     
     /** L'image du Vide. */
     static public Image Vide; 
