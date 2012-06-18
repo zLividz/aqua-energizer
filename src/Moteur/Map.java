@@ -52,6 +52,18 @@ public class Map
                 switch(c)
                 {
                     case ' ' : caseLigne.add(new Case(Constantes.Case.Vide, p));  break;
+                    case 'b' : caseLigne.add(new Case(Constantes.Case.BalleBleue, p));  break;
+                    case 'r' : caseLigne.add(new Case(Constantes.Case.BalleRouge, p));  break;
+                    case 'u' : caseLigne.add(new Case(Constantes.Case.Bombe, p));  break;
+                    case 'k' : caseLigne.add(new Case(Constantes.Case.Clef, p));  break;
+                    case 'c' : caseLigne.add(new Case(Constantes.Case.Crabe, p));  break;
+                    case 'I' : caseLigne.add(new Case(Constantes.Case.Indestructible, p));  break;
+                    case 'J' : caseLigne.add(new Case(Constantes.Case.Joueur, p));  break;
+                    case 'D' : caseLigne.add(new Case(Constantes.Case.Pierre, p));  break;
+                    case 'p' : caseLigne.add(new Case(Constantes.Case.Poisson, p));  break;
+                    case 'o' : caseLigne.add(new Case(Constantes.Case.Porte, p));  break;
+                    case 'm' : caseLigne.add(new Case(Constantes.Case.Sable, p));  break;
+                    case 's' : caseLigne.add(new Case(Constantes.Case.Sortie, p));  break;
                     default : p.Colone--; break; // Si l'on ajoute pas de case, on fait en sorte de ne pas avancer
                 }
                 p.Colone++;
