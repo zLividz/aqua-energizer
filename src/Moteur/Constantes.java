@@ -21,18 +21,17 @@ public class Constantes
     { 
         public Position(int ligne, int colone) 
         { this.Ligne = ligne; this.Colone = colone; } 
-        public void addPosition(Direction direction)
+        public Position addPosition(Direction direction)
         {
+            Position p = new Position(this.Ligne, this.Colone);
             switch (direction)
             {
-                case Haut : this.Ligne --; break;
-                case Bas : this.Ligne++; break;
-                case Gauche : this.Colone--; break;
-                case Droite : this.Colone++; break;
-
-                default :
-                    break;
+                case Haut : p.Ligne --; break;
+                case Bas : p.Ligne++; break;
+                case Gauche : p.Colone--; break;
+                case Droite : p.Colone++; break;
             }
+            return p;
         }
         public int Ligne ; public int Colone; 
     }

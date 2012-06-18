@@ -106,10 +106,68 @@ public class Map
      */
     public boolean deplacementPersonnage(Constantes.Direction directionDeplacement)
     {
-        // gestion de la collision
-        //if(collision) return false
+        Case caseDeplacement = null;
+        switch(directionDeplacement)
+        {
+            case Haut : 
+                caseDeplacement = this.m_Map.get(this.m_Personnage.getPosition().Ligne-1).get(this.m_Personnage.getPosition().Colone);
+                break;
+            case Bas : 
+                caseDeplacement = this.m_Map.get(this.m_Personnage.getPosition().Ligne+1).get(this.m_Personnage.getPosition().Colone);
+                break;
+            case Gauche : 
+                caseDeplacement = this.m_Map.get(this.m_Personnage.getPosition().Ligne).get(this.m_Personnage.getPosition().Colone-1);
+                break;
+            case Droite :
+                caseDeplacement = this.m_Map.get(this.m_Personnage.getPosition().Ligne).get(this.m_Personnage.getPosition().Colone+1);
+                break;
+        }
         
-        this.m_Personnage.deplacement(directionDeplacement); 
+        if(caseDeplacement.getType() == Constantes.Case.Sable)
+        {
+            caseDeplacement.transformeEnVide();
+            this.m_Personnage.deplacement(directionDeplacement);
+            return true;
+        }
+        if(caseDeplacement.getType() == Constantes.Case.Vide)
+        { this.m_Personnage.deplacement(directionDeplacement); return true; }
+        
+        // On teste maintenant si la case de déplacement est déplacable : est ce que le joueur pousse la case
+        if(caseDeplacement.estDeplacable())
+            // Si on a pu pousser la case
+            if(this.pousseCase(this.m_Personnage.getPosition().addPosition(directionDeplacement), directionDeplacement))
+            { this.m_Personnage.deplacement(directionDeplacement); return true; }
+        
+        // C'est que on ne peut pas se déplacer
+        return false;
+        
+    }
+    
+    /**
+     * Pousse la case indiquée en position dans la direction passée en parramètre
+     * @param p La position de la case à déplacer
+     * @param direction Direction du déplacement
+     * @return Retourne s'il y a succès ou echec au déplacement
+     * @see Constantes.Position
+     * @see Constantes.Direction
+     */
+    public boolean pousseCase(Position p, Constantes.Direction direction)
+    {
+        // La seule condition est que la position soit libre
+        Position nouvellePosition = p.addPosition(direction);
+        Case caseDestination = this.m_Map.get(nouvellePosition.Ligne).get(nouvellePosition.Colone);
+        
+        if(caseDestination.getType() != Constantes.Case.Vide)
+            return false;
+        
+        // Inversion des deux cases
+        // La destination devient l'origine
+        this.m_Map.get(nouvellePosition.Ligne).set(nouvellePosition.Colone, this.m_Map.get(p.Ligne).get(p.Colone));
+        // On met a jour la position de la case
+        this.m_Map.get(nouvellePosition.Ligne).get(nouvellePosition.Colone).deplacement(direction);
+        // L'origine devient une case vide
+        this.m_Map.get(p.Ligne).set(p.Colone, new Case(Constantes.Case.Vide, p));
+        
         return true;
     }
     
@@ -120,6 +178,30 @@ public class Map
      * @see Moteur.Constantes.Position
      */
     public Position getPositionPersonnage() { return this.m_Personnage.getPosition(); }
+    
+    /**
+     * Ouvre les portes si la clef a été récupérée
+     */
+    public void ouvrePortes()
+    {
+        if(this.m_PortesOuvertes)
+            for(ArrayList<Case> ac : this.m_Map)
+                for(Case c : ac)
+                    if(c.getType() == Constantes.Case.Porte)
+                        c.transformeEnVide();
+    }
+    
+    /**
+     * Mise a jour de tous les blocs soumis à la gravitée
+     */
+    public void verrifieGravite()
+    {
+        for(ArrayList<Case> ac : this.m_Map)
+            for(Case c : ac)
+                if(c.estDeplacable())
+                    if(this.pousseCase(c.getPosition(), Constantes.Direction.Bas))
+                        c.deplacement(Constantes.Direction.Bas);
+    }
     
     //Liste des etres vivants
     private Personnage m_Personnage;
