@@ -1,6 +1,5 @@
 package Moteur;
 
-import Exceptions.CaseException;
 import Moteur.Constantes;
 import Moteur.Constantes.Direction;
 
@@ -18,7 +17,6 @@ public class Case
      * @param ligne Position de la case, ligne
      * @param colone Position de la case, colone
      */
-    @SuppressWarnings("nls") 
     public Case(Constantes.Case typeCase, int ligne, int colone)
     {
         this.m_TypeCase = typeCase;
@@ -88,7 +86,6 @@ public class Case
      * @param typeCase Type de la case, énumération de Moteur.Constantes
      * @param p Position de la case, structure Constantes.Position
      */
-    @SuppressWarnings("nls") 
     public Case(Constantes.Case typeCase, Constantes.Position p)
     {
         this.m_TypeCase = typeCase;
@@ -182,6 +179,11 @@ public class Case
      * Donne la position de la case dans la map
      */
     protected Constantes.Position m_Position;
+    /**
+     * Récupère la position de la case
+     * @return Retourne une structure position
+     * @see Moteur.Constantes.Position
+     */
     public Constantes.Position getPosition() { return this.m_Position; }
     /**
      * Déplace la case dans la position donnée, si possible

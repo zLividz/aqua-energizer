@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 
 import Exceptions.CaseException;
 import Moteur.Map;
-import Moteur.Vivant.Personnage;
 
 /**
  * @author Vincent

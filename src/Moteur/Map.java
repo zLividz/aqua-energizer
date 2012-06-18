@@ -203,7 +203,7 @@ public class Map
                         c.deplacement(Constantes.Direction.Bas);
     }
     
-    //Liste des etres vivants
+    // Liste des etres vivants
     private Personnage m_Personnage;
     private ArrayList<Crabe> m_Crabes;
     private ArrayList<Poisson> m_Poissons;
