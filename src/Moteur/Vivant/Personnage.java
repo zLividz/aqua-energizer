@@ -18,9 +18,7 @@ public class Personnage extends Moteur.Case implements Moteur.Vivant.IEtreVivant
      * @throws CaseException Excption levée si la position n'est pas correcte
      */
     public Personnage(Position p) throws CaseException
-    {
-        super(Case.Joueur, p);
-    }
+    { super(Case.Joueur, p); }
     
     @Override public void deplacement(Constantes.Direction directionDeplacement)
     {

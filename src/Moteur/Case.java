@@ -2,6 +2,7 @@ package Moteur;
 
 import Exceptions.CaseException;
 import Moteur.Constantes;
+import Moteur.Constantes.Direction;
 
 /**
  * Classe qui va servir d'unité pour la map
@@ -16,10 +17,9 @@ public class Case
      * @param typeCase Type de la case, énumération de Moteur.Constantes
      * @param ligne Position de la case, ligne
      * @param colone Position de la case, colone
-     * @throws CaseException Exception levée si le type de la case n'est pas trouvé
      */
     @SuppressWarnings("nls") 
-    public Case(Constantes.Case typeCase, int ligne, int colone) throws CaseException
+    public Case(Constantes.Case typeCase, int ligne, int colone)
     {
         this.m_TypeCase = typeCase;
         
@@ -71,7 +71,14 @@ public class Case
                 this.m_EstDeplacable = true;
                 this.m_EstDestructible = true;
                 break;
-            default : throw new CaseException("Type de la case inconnu");
+            case Poisson :
+                this.m_EstDeplacable = true;
+                this.m_EstDestructible = true;
+                break;
+            case Crabe : 
+                this.m_EstDeplacable = true;
+                this.m_EstDestructible = true;
+                break;
         }
         
     }
@@ -80,10 +87,9 @@ public class Case
      * Constructeur de la case
      * @param typeCase Type de la case, énumération de Moteur.Constantes
      * @param p Position de la case, structure Constantes.Position
-     * @throws CaseException Exception levée si le type de la case n'est pas trouvé
      */
     @SuppressWarnings("nls") 
-    public Case(Constantes.Case typeCase, Constantes.Position p) throws CaseException
+    public Case(Constantes.Case typeCase, Constantes.Position p)
     {
         this.m_TypeCase = typeCase;
         this.m_Position.Ligne = p.Ligne;
@@ -134,9 +140,28 @@ public class Case
                 this.m_EstDeplacable = true;
                 this.m_EstDestructible = true;
                 break;
-            default : throw new CaseException("Type de la case inconnu");
+            case Poisson :
+                this.m_EstDeplacable = true;
+                this.m_EstDestructible = true;
+                break;
+            case Crabe : 
+                this.m_EstDeplacable = true;
+                this.m_EstDestructible = true;
+                break;
         }
     }
+    
+    
+    /**
+     * Permet de transformer la case en vide, dans le cas d'une explosion par exemple
+     */
+    public void transformeEnVide()
+    {
+        this.m_TypeCase = Constantes.Case.Vide;
+        this.m_EstDestructible = false;
+        this.m_EstDeplacable = false;
+    }
+    
     
     /**
      * Indique si la case est destructible par explosion
@@ -147,14 +172,34 @@ public class Case
      * Indique si la case est déplacable par le joueur
      */
     protected boolean m_EstDeplacable;
+    /**
+     * Retourne si la case est déplacable
+     * @return Retourne un booléen
+     */
+    public boolean estDeplacable() { return this.m_EstDeplacable; }
     
     /**
      * Donne la position de la case dans la map
      */
     protected Constantes.Position m_Position;
+    public Constantes.Position getPosition() { return this.m_Position; }
+    /**
+     * Déplace la case dans la position donnée, si possible
+     * @param direction Direction du déplacement
+     */
+    public void deplacement(Direction direction)
+    {
+        if(this.m_EstDeplacable)
+            this.m_Position = this.m_Position.addPosition(direction); 
+    }
     
     /**
      * Indique le type de la case
      */
     protected Constantes.Case m_TypeCase;
+    /**
+     * Récupère le type de la case
+     * @return Retourne un élément de l'énumération Constantes.Case
+     */
+    public Constantes.Case getType() { return this.m_TypeCase; }
 }
