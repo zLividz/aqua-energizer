@@ -41,5 +41,11 @@ public class Personnage extends Moteur.Case implements Moteur.Vivant.IEtreVivant
         }
     }
     
+    /**
+     * Retourne la position du personnage sur la map actuelle
+     * @return Retourne la position
+     * @see Position
+     */
+    public Position getPosition() { return this.m_Position; }
 
 }

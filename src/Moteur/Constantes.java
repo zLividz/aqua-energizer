@@ -27,7 +27,7 @@ public class Constantes
                                                            Indestructible, Pierre, Sable,
                                                            Bombe, BalleRouge, BalleBleue,
                                                            Porte, Clef, Sortie,
-                                                           Joueur, Poisson, Crabe }
+                                                           Joueur, Crabe, Poisson }
     
 }
 

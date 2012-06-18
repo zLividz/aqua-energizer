@@ -3,9 +3,12 @@ package Interface;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 import Exceptions.CaseException;
+import Moteur.Map;
 import Moteur.Vivant.Personnage;
 
 /**
@@ -21,8 +24,10 @@ public class MaFenetre extends JPanel implements KeyListener
     public MaFenetre() throws Exception
     {
         // Initialisation des champs
+        this.m_Maps = new ArrayList<>();
+        this.m_NiveauCourrant = 1;
         try
-        { this.m_Personnage = new Personnage(new Moteur.Constantes.Position(0, 0)); }
+        {   this.m_Maps.add(new Map(1)); }
         catch(CaseException e)
         { 
             System.err.println(e.getMessage()); 
@@ -38,8 +43,8 @@ public class MaFenetre extends JPanel implements KeyListener
     
     
     // Champs
-    
-    private Moteur.Vivant.Personnage m_Personnage;
+    private ArrayList<Map> m_Maps;
+    private int m_NiveauCourrant;
     
     
     
@@ -61,25 +66,25 @@ public class MaFenetre extends JPanel implements KeyListener
             // Déplacement vers le haut
             case KeyEvent.VK_Z : 
             case KeyEvent.VK_UP : 
-                this.m_Personnage.deplacement(Moteur.Constantes.Direction.Haut);
+                this.m_Maps.get(this.m_NiveauCourrant).deplacementPersonnage(Moteur.Constantes.Direction.Haut);
                 break;
                 
             // Décplacement vers le bas
             case KeyEvent.VK_S : 
             case KeyEvent.VK_DOWN : 
-                this.m_Personnage.deplacement(Moteur.Constantes.Direction.Bas);
+                this.m_Maps.get(this.m_NiveauCourrant).deplacementPersonnage(Moteur.Constantes.Direction.Bas);
                 break;
                 
             // Déplacement vers la droite
             case KeyEvent.VK_D : 
             case KeyEvent.VK_RIGHT : 
-                this.m_Personnage.deplacement(Moteur.Constantes.Direction.Droite);
+                this.m_Maps.get(this.m_NiveauCourrant).deplacementPersonnage(Moteur.Constantes.Direction.Droite);
                 break;
                 
             //Déplacement vers la gauche
             case KeyEvent.VK_Q : 
             case KeyEvent.VK_LEFT : 
-                this.m_Personnage.deplacement(Moteur.Constantes.Direction.Gauche);
+                this.m_Maps.get(this.m_NiveauCourrant).deplacementPersonnage(Moteur.Constantes.Direction.Gauche);
                 break;
         }
         
