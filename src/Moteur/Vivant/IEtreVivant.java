@@ -7,7 +7,7 @@ import Moteur.Constantes;
  * @author Petrolevb
  *
  */
-public interface EtreVivant
+public interface IEtreVivant
 {
     /**
      * Fonction qui défini le déplacement

@@ -7,9 +7,9 @@ import Moteur.Constantes.Position;
 
 /**
  * @author Vincent
- * @see Moteur.Vivant.EtreVivant
+ * @see Moteur.Vivant.IEtreVivant
  */
-public class Crabe extends Moteur.Case implements Moteur.Vivant.EtreVivant
+public class Crabe extends Moteur.Case implements Moteur.Vivant.IEtreVivant
 {
     /**
      * Constructeur de la classe

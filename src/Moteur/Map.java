@@ -64,6 +64,6 @@ public class Map
         
     }// Fin du constructeur
         
-    private ArrayList< ArrayList<Moteur.Case> > m_Map; 
+    private ArrayList< ArrayList<Moteur.Case> > m_Map;
 }
     

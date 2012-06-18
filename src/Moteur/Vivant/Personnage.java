@@ -8,9 +8,9 @@ import Moteur.Constantes.Position;
 /**
  * Classe qui va définir le personnage
  * @author Vincent
- * @see Moteur.Vivant.EtreVivant
+ * @see Moteur.Vivant.IEtreVivant
  */
-public class Personnage extends Moteur.Case implements Moteur.Vivant.EtreVivant 
+public class Personnage extends Moteur.Case implements Moteur.Vivant.IEtreVivant 
 {
     /**
      * Constructeur de la classe

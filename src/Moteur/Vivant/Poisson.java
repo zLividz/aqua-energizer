@@ -7,10 +7,10 @@ import Moteur.Constantes.Position;
 
 /**
  * @author Vincent
- * @see Moteur.Vivant.EtreVivant
+ * @see Moteur.Vivant.IEtreVivant
  * @see Moteur.Constantes.Case
  */
-public class Poisson extends Moteur.Case implements Moteur.Vivant.EtreVivant
+public class Poisson extends Moteur.Case implements Moteur.Vivant.IEtreVivant
 {
     /**
      * Constructeur de la classe
@@ -18,9 +18,7 @@ public class Poisson extends Moteur.Case implements Moteur.Vivant.EtreVivant
      * @throws CaseException Excption levée si la position n'est pas correcte
      */
     public Poisson(Position p) throws CaseException
-    {
-        super(Constantes.Case.Poisson, p);
-    }
+    { super(Constantes.Case.Poisson, p); }
     
     @Override
     public void deplacement(Direction directionDeplacement)
