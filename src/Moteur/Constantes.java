@@ -18,7 +18,24 @@ public class Constantes
      * @author Petrolevb
      */
     @SuppressWarnings("javadoc") public static class Position 
-    { public Position(int ligne, int colone) { this.Ligne = ligne; this.Colone = colone; } public int Ligne ; public int Colone; }
+    { 
+        public Position(int ligne, int colone) 
+        { this.Ligne = ligne; this.Colone = colone; } 
+        public void addPosition(Direction direction)
+        {
+            switch (direction)
+            {
+                case Haut : this.Ligne --; break;
+                case Bas : this.Ligne++; break;
+                case Gauche : this.Colone--; break;
+                case Droite : this.Colone++; break;
+
+                default :
+                    break;
+            }
+        }
+        public int Ligne ; public int Colone; 
+    }
     
     /**
      * Enumération des cases possibles
