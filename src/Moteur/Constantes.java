@@ -17,10 +17,22 @@ public class Constantes
      * Structure de positionnement pour le moteur
      * @author Petrolevb
      */
-    @SuppressWarnings("javadoc") public static class Position 
+    public static class Position 
     { 
+        /**
+         * Constructeur de la classe
+         * @param ligne Coordonnée X de la position
+         * @param colone Coordonnée Y de la position
+         */
         public Position(int ligne, int colone) 
         { this.Ligne = ligne; this.Colone = colone; } 
+        
+        /**
+         * Permet de calculer une position a partir d'une direction
+         * @param direction Direction du déplacement
+         * @return Retourne une nouvelle Position
+         * @see Direction
+         */
         public Position addPosition(Direction direction)
         {
             Position p = new Position(this.Ligne, this.Colone);
@@ -33,7 +45,16 @@ public class Constantes
             }
             return p;
         }
-        public int Ligne ; public int Colone; 
+        /**
+         * Retourne si la position passée en parramêtre est dans l'une des 8 cases autour de celle ci
+         * @param p Position à tester
+         * @return Retourne un booléen
+         */
+        public boolean contact(Position p)
+        { return ((Math.abs(p.Ligne-this.Ligne) < 2) && (Math.abs(p.Colone-this.Colone) < 2)); }
+        
+        /** Coordonnée en X */ public int Ligne ;
+        /** Coordonnée en Y */ public int Colone; 
     }
     
     /**

@@ -170,7 +170,9 @@ public class Map
     }
     
     public void collisionAvecJoueur(Position p)
-    {}
+    {
+        
+    }
     
     public void explosion(Position p)
     {}
