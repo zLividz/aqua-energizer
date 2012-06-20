@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Exceptions.*;
+import Moteur.Constantes.Direction;
 import Moteur.Constantes.Position;
 import Moteur.Vivant.*;
 
@@ -48,6 +49,10 @@ public class Map
         Scanner sc = new Scanner(r);
         Position p = new Position(0, 0);
         
+        // La ligne va contenir toutes les informations nécéssaire pour la map
+            // Exemple : direction initiale des poisson
+        String ligneInformation = sc.nextLine();
+        Direction directionInitialePoisson = Direction.Haut;
         
         while(sc.hasNext())
         {
@@ -80,7 +85,16 @@ public class Map
                     case 'D' : caseLigne.add(new Case(Constantes.Case.Pierre, p));  break;
                     case 'p' : 
                         caseLigne.add(new Case(Constantes.Case.Vide, p));
-                        this.m_Poissons.add(new Poisson(p));
+                        switch(ligneInformation.charAt(0))
+                        {
+                            case 'h' : directionInitialePoisson = Direction.Haut; break;
+                            case 'b' : directionInitialePoisson = Direction.Bas; break;
+                            case 'g' : directionInitialePoisson = Direction.Gauche; break;
+                            case 'd' : directionInitialePoisson = Direction.Droite; break;
+                        }
+                        // On retire le carractère utilisé de la ligne d'information
+                        ligneInformation = ligneInformation.substring(1);
+                        this.m_Poissons.add(new Poisson(p, directionInitialePoisson));
                         break;
                     case 'o' : caseLigne.add(new Case(Constantes.Case.Porte, p));  break;
                     case 'm' : caseLigne.add(new Case(Constantes.Case.Sable, p));  break;
