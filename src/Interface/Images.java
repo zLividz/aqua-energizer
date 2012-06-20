@@ -3,6 +3,8 @@ package Interface;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
 
 import javax.imageio.ImageIO;
 
@@ -23,20 +25,21 @@ public class Images
         Vide = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "vide.png")); 
         Indestructible =  ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "indestructible.png"));
         Pierre = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "pierre.png")); 
-        Sable = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
+        Sable = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "sable.png")); 
         
         
         BalleBleue =  ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "boulle bleu.png"));
         BalleRouge = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "boulle rouge.png")); 
-        Clef = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
+        Clef = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "clef.png")); 
         
         Bombe = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
         Sortie = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "sortie.png")); 
-        Porte = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
+        Porte = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "porte.png"));
         
         Joueur = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "personnage.png"));
         Crabe = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
-        Poisson = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
+        Poisson = new HashMap<>();
+        Poisson.put(Moteur.Constantes.Direction.Haut, ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "poisson_haut.png")));
         
     }
 
@@ -45,7 +48,7 @@ public class Images
     /** L'image du Vide. */
     static public Image Crabe; 
     /** L'image du Vide. */
-    static public Image Poisson; 
+    static public HashMap<Moteur.Constantes.Direction, Image> Poisson; 
     
     /** L'image du Vide. */
     static public Image Vide; 

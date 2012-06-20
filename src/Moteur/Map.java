@@ -123,6 +123,7 @@ public class Map
                 break;
         }
         
+        // Si le joueur va dans le sable, il le détruit
         if(caseDeplacement.getType() == Constantes.Case.Sable)
         {
             caseDeplacement.transformeEnVide();
