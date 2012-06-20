@@ -33,6 +33,7 @@ public class Map
                             "level" + File.separator + 
                             "niveau" + niveau;
         this.m_NombreBalleRouge = 0;
+        this.m_Perdu = false;
         this.m_Map = new ArrayList<>();
         
         this.m_Personnage = null;
@@ -169,13 +170,46 @@ public class Map
         
     }
     
+    /**
+     * Teste si la position p est dans l'une des 8 cases autour du joueur
+     * Met a jour si la map est perdue
+     * @param p La Position à tester
+     */
     public void collisionAvecJoueur(Position p)
     {
-        
+        if(this.getPositionPersonnage().contact(p))
+        { explosion(p); explosion(this.getPositionPersonnage()); this.m_Perdu = true; }
     }
     
+    /**
+     * Fonction qui fait exploser les 8 cases autour de la position p
+     * @param p La position qui explose
+     */
     public void explosion(Position p)
-    {}
+    { 
+        this.m_Map.get(p.Ligne).get(p.Colone).transformeEnVide();
+        for(int i = p.Ligne - 1; i <= p.Ligne+1; i++)
+        {
+            // Tests si en dehors de la map
+            if(i < 0) continue;
+            if(i >= this.m_Map.size()) continue;
+            
+            for(int j = p.Colone - 1; j <= p.Colone+1; j++)
+            {
+                // Même tests que précédement
+                if(j < 0) continue;
+                if(j >= this.m_Map.get(i).size()) continue;
+                // On test si le joueur est dans cette position
+                if(this.getPositionPersonnage().contact(new Position(i, j))) this.m_Perdu = true;
+                // S'il s'agit d'une bombe
+                if(this.m_Map.get(i).get(j).getType() == Constantes.Case.Bombe)
+                    explosion(new Position(i, j));
+                if(this.m_Map.get(i).get(j).m_EstDestructible)
+                    this.m_Map.get(i).get(j).transformeEnVide();
+            }
+        }
+    }
+    
     /**
      * Fonction appelée periodiquement qui va automatiquement déplacer les monstres
      */
@@ -332,5 +366,13 @@ public class Map
     public ArrayList< ArrayList<Moteur.Case> > getMap() { return this.m_Map; }
     private ArrayList< ArrayList<Moteur.Case> > m_Map;
     private int m_NombreBalleRouge;
+    
+    /**
+     * Retourne si la map est perdue : si le joueur est mort
+     * @return Retourne un booléen
+     */
+    public boolean EstPerdue() { return this.m_Perdu; }
+    private boolean m_Perdu;
+    
 }
     
