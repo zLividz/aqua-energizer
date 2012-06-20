@@ -17,15 +17,10 @@ public class Crabe extends Moteur.Case implements Moteur.Vivant.IEtreVivant
      * @throws CaseException Excption levée si la position n'est pas correcte
      */
     public Crabe(Position p) throws CaseException
-    {
-        super(Constantes.Case.Crabe, p);
-        
-    }
+    { super(Constantes.Case.Crabe, p); }
     
     @Override
     public void deplacement(Direction directionDeplacement)
-    {
-        
-    }
+    { this.m_Position = this.m_Position.addPosition(directionDeplacement); }
 
 }

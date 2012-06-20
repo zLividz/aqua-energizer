@@ -24,7 +24,8 @@ public class Poisson extends Moteur.Case implements Moteur.Vivant.IEtreVivant
     @Override
     public void deplacement(Direction directionDeplacement)
     {
-        
+        this.m_DeplacementPrecedent = directionDeplacement;
+        this.m_Position = this.m_Position.addPosition(directionDeplacement);
     }
     
     /**
