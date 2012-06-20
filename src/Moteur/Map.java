@@ -130,8 +130,19 @@ public class Map
             this.m_Personnage.deplacement(directionDeplacement);
             return true;
         }
+        // Si le joueur va dans le vide, rien de spécial
         if(caseDeplacement.getType() == Constantes.Case.Vide)
         { this.m_Personnage.deplacement(directionDeplacement); return true; }
+        
+        // Si le joueur prend la clef
+        if(caseDeplacement.getType() == Constantes.Case.Clef)
+        { 
+            caseDeplacement.transformeEnVide();
+            this.m_PortesOuvertes = true;
+            this.ouvrePortes();
+            this.m_Personnage.deplacement(directionDeplacement);
+            return true;
+        }
         
         // On teste maintenant si la case de déplacement est déplacable : est ce que le joueur pousse la case
         if(caseDeplacement.estDeplacable())
@@ -200,7 +211,9 @@ public class Map
         for(ArrayList<Case> ac : this.m_Map)
             for(Case c : ac)
                 if(c.estDeplacable())
+                    // On pousse la case vers le bas
                     if(this.pousseCase(c.getPosition(), Constantes.Direction.Bas))
+                        // Si la map c'est bien actualisée, on actualise la case également
                         c.deplacement(Constantes.Direction.Bas);
     }
     
