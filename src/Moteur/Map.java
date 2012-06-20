@@ -169,6 +169,89 @@ public class Map
         
     }
     
+    public void collisionAvecJoueur(Position p)
+    {}
+    
+    public void explosion(Position p)
+    {}
+    /**
+     * Fonction appelée periodiquement qui va automatiquement déplacer les monstres
+     */
+    public void deplacementMonstres()
+    {
+        for (Poisson p : this.m_Poissons)
+        {
+            Direction depP = p.getDirectionPrecedente();
+            Position posP = p.getPosition(),
+                     posSuiv = posP.addPosition(depP);
+            // Si on peut immédiatement déplacer le poisson
+            if(this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
+                p.deplacement(depP);
+            // Sinon, on parcours toutes les directions envisageables
+            else
+                for(Constantes.Direction d : Constantes.Direction.values())
+                {
+                    posSuiv = posP.addPosition(d);
+                    if(this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
+                    { p.deplacement(d); break; }
+                }
+            // Sinon, on ne déplace pas le poisson, il reste sur place
+            
+            // Détection collision avec le joueur 
+            collisionAvecJoueur(p.getPosition());
+        } // Fin foreach poisson
+        for(Crabe c : this.m_Crabes)
+        {
+            // Le crabe veut le joueur, d'abords il se met sur la même ligne
+            Position posC = c.getPosition(),
+                     posJ = this.m_Personnage.getPosition(),
+                     posSuiv;
+            if( (posC.Ligne-posJ.Ligne) != 0)
+            {
+                // On le déplace pour aller a l'alignement
+                // Si le crabe est plus haut que le joueur
+                if( (posC.Ligne-posJ.Ligne) > 0) 
+                {
+                    posSuiv = posC.addPosition(Direction.Bas);
+                    if(this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
+                        c.deplacement(Direction.Bas);
+                }
+                else 
+                {
+                    posSuiv = posC.addPosition(Direction.Haut);
+                    if(this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
+                    c.deplacement(Direction.Haut);
+                }
+            }
+            // Sinon, il est sur la même ligne
+            else
+            {
+                if( (posC.Colone-posJ.Colone) != 0)
+                {
+                    // On le déplace pour aller a l'alignement
+                    // Si le crabe est plus a droite que le joueur
+                    if( (posC.Colone-posJ.Colone) > 0) 
+                    {
+                        posSuiv = posC.addPosition(Direction.Gauche);
+                        if(this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
+                            c.deplacement(Direction.Gauche);
+                    }
+                    else
+                    {
+                        posSuiv = posC.addPosition(Direction.Droite);
+                        if(this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
+                            c.deplacement(Direction.Droite);
+                    }
+                }
+            } // Fin déplacement en colone
+            
+            // Detection des collisions avec le joueur
+            collisionAvecJoueur(c.getPosition());
+        } // Fin foreach Crabes
+    }
+    
+    
+    
     /**
      * Pousse la case indiquée en position dans la direction passée en parramètre
      * @param p La position de la case à déplacer
