@@ -20,21 +20,21 @@ public class Images
      */
     static public void Init() throws IOException
     { 
-        Vide = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
-        Indestructible =  ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
-        Pierre = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
+        Vide = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "vide.png")); 
+        Indestructible =  ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "indestructible.png"));
+        Pierre = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "pierre.png")); 
         Sable = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
         
         
-        BalleBleue =  ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
-        BalleRouge = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
+        BalleBleue =  ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "boulle bleu.png"));
+        BalleRouge = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "boulle rouge.png")); 
         Clef = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
         
         Bombe = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
-        Sortie = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
+        Sortie = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "sortie.png")); 
         Porte = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
         
-        Joueur = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
+        Joueur = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "personnage.png"));
         Crabe = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
         Poisson = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
         
