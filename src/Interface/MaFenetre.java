@@ -20,6 +20,7 @@ public class MaFenetre extends JPanel implements KeyListener
      * Constructeur de la classe
      * @throws Exception Exception de conception
      */
+    @SuppressWarnings("nls")
     public MaFenetre() throws Exception
     {
         // Initialisation des champs
