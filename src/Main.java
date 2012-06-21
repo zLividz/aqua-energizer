@@ -35,11 +35,8 @@ public class Main
             frame.setSize(Interface.Constantes.LargeurFenetre, Interface.Constantes.HauteurFenetre);
             final MaFenetre fenetre = new MaFenetre();
             frame.getContentPane().add(fenetre);
-            frame.getContentPane().addKeyListener(new KeyAdapter()
-            {
-                @Override public void keyTyped(KeyEvent e)
-                { fenetre.keyPressed(e); }
-            });
+            frame.addKeyListener(fenetre);
+            
             frame.setVisible(true);
         }
         catch(Exception e)

@@ -16,7 +16,7 @@ import Interface.Constantes;
  * @author Vincent
  *
  */
-public class MaFenetre extends JPanel
+public class MaFenetre extends JPanel implements KeyListener
 {
     /**
      * Constructeur de la classe
@@ -29,6 +29,7 @@ public class MaFenetre extends JPanel
         // Initialisation de la fenetre
         setSize(Constantes.LargeurFenetre, Constantes.HauteurFenetre);
         setOpaque(true);
+        addKeyListener(this);
         changementNiveau(1, 30);
         
     }
@@ -127,12 +128,10 @@ public class MaFenetre extends JPanel
         
     }
     
-    /**
-     * Traite l'appuie de touche par le joueur
-     * @param e Le KeyEvent à traiter
-     */
+    @Override
     public void keyPressed(KeyEvent e)
     {
+        System.out.println("Test");
         switch(e.getKeyCode())
         {
             // Déplacement vers le haut
@@ -160,6 +159,20 @@ public class MaFenetre extends JPanel
                 break;
         }
         this.repaint();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent arg0)
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void keyTyped(KeyEvent arg0)
+    {
+        // TODO Auto-generated method stub
+        
     }
 
 }
