@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JProgressBar;
 
 import Moteur.Map;
 import Moteur.Vivant.Crabe;
@@ -37,9 +39,15 @@ public class MaFenetre extends JPanel implements KeyListener
         switch(code)
         {
             case "Niveau2" : changementNiveau(2, 30); break;
+            case "Niveau3" : changementNiveau(3, 30); break;
+            case "Niveau4" : changementNiveau(4, 30); break;
             default : changementNiveau(1, 30); break;
         }
-        
+        this.m_BarreEnergie = new JProgressBar();
+        this.m_BarreEnergie.setMaximum(100);
+        this.m_BarreEnergie.setValue(0);
+        this.m_BarreEnergie.setLocation(0, Constantes.HauteurFenetre - Constantes.HauteurCase);
+        this.add(this.m_BarreEnergie);
     }
     
     /**
@@ -49,7 +57,6 @@ public class MaFenetre extends JPanel implements KeyListener
      */
     public void verrificationFinNiveau() throws CaseException, LevelException
     {
-        System.out.println("Energie : " + this.m_MapCourrante.getEnergie());
         if(this.m_MapCourrante.Sortie())
         {
             this.m_NiveauCourrant++;
@@ -86,11 +93,25 @@ public class MaFenetre extends JPanel implements KeyListener
     private Map m_MapCourrante;
     private int m_NiveauCourrant;
     
+    private JProgressBar m_BarreEnergie;
+    
     // Méthodes pour JPanel et KeyListener
+    
+    /**
+     * Mise à jour des diverses informations
+     */
+    public void affichageInformations()
+    {
+        this.m_BarreEnergie.setValue((int)(100*this.m_MapCourrante.getEnergie()));
+    }
+    
     
     @Override
     public void paintComponent(Graphics g)
     {
+        // On met a jour les informations (au cas où)
+        this.affichageInformations();
+        
         // Affichage de toutes les cases de la map
         for(ArrayList<Moteur.Case> ac : this.m_MapCourrante.getMap())
             for(Moteur.Case c : ac)
@@ -189,6 +210,8 @@ public class MaFenetre extends JPanel implements KeyListener
                 break;
         }
         this.repaint();
+        
+        this.affichageInformations();
         try { this.verrificationFinNiveau(); }
         catch(LevelException le)
         {

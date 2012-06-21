@@ -29,7 +29,7 @@ public class Main
         {
             JFrame frame = new JFrame();
             frame.setSize(Interface.Constantes.LargeurFenetre, Interface.Constantes.HauteurFenetre);
-            final MaFenetre fenetre = new MaFenetre("Niveau2");
+            final MaFenetre fenetre = new MaFenetre("");
             frame.getContentPane().add(fenetre);
             frame.addKeyListener(fenetre);
             
