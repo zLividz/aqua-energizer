@@ -12,8 +12,8 @@ import java.util.Scanner;
 import javax.swing.Timer;
 
 import Exceptions.*;
+import Moteur.Position;
 import Moteur.Constantes.Direction;
-import Moteur.Constantes.Position;
 import Moteur.Vivant.*;
 
 /**
@@ -386,7 +386,7 @@ public class Map
      * @param p La position de la case à déplacer
      * @param direction Direction du déplacement
      * @return Retourne s'il y a succès ou echec au déplacement
-     * @see Constantes.Position
+     * @see Position
      * @see Constantes.Direction
      */
     public boolean pousseCase(Position p, Constantes.Direction direction)
@@ -426,7 +426,7 @@ public class Map
      * Retourne la position du personnage sur la map
      * @return Retourne la position
      * @see Moteur.Vivant.Personnage
-     * @see Moteur.Constantes.Position
+     * @see Moteur.Position
      */
     public Position getPositionPersonnage() { return this.m_Personnage.getPosition(); }
     

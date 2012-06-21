@@ -1,9 +1,9 @@
 package Moteur.Vivant;
 
 import Exceptions.CaseException;
+import Moteur.Position;
 import Moteur.Constantes;
 import Moteur.Constantes.Direction;
-import Moteur.Constantes.Position;
 
 /**
  * @author Vincent BELLEC

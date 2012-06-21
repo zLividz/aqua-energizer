@@ -2,8 +2,8 @@ package Moteur.Vivant;
 
 import Exceptions.CaseException;
 import Moteur.Constantes;
+import Moteur.Position;
 import Moteur.Constantes.Case;
-import Moteur.Constantes.Position;
 
 /**
  * Classe qui va définir le personnage

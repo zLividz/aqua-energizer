@@ -1,8 +1,8 @@
 package Moteur;
 
+import Moteur.Position;
 import Moteur.Constantes;
 import Moteur.Constantes.Direction;
-import Moteur.Constantes.Position;
 
 /**
  * Classe qui va servir d'unité pour la map
@@ -86,7 +86,7 @@ public class Case
      * @param typeCase Type de la case, énumération de Moteur.Constantes
      * @param p Position de la case, structure Constantes.Position
      */
-    public Case(Constantes.Case typeCase, Constantes.Position p)
+    public Case(Constantes.Case typeCase, Position p)
     {
         this.m_TypeCase = typeCase;
         this.m_Tombe = false;
@@ -193,13 +193,13 @@ public class Case
     /**
      * Donne la position de la case dans la map
      */
-    protected Constantes.Position m_Position;
+    protected Position m_Position;
     /**
      * Récupère la position de la case
      * @return Retourne une structure position
-     * @see Constantes.Position
+     * @see Position
      */
-    public Constantes.Position getPosition() { return this.m_Position; }
+    public Position getPosition() { return this.m_Position; }
     /**
      * Déplace la case dans la position donnée, si possible
      * @param direction Direction du déplacement
