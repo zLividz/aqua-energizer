@@ -56,10 +56,22 @@ public class Map
                     for(ArrayList<Case> ac : Map.this.m_Map)
                         for(Case c : ac)
                             if(c.estDeplacable())
+                            {
+                                // On test si la boule est rouge et la sortie en dessous
+                                if(c.getType() == Constantes.Case.BalleRouge)
+                                {
+                                    if(c.getPosition().addPosition(Constantes.Direction.Bas) == Map.this.m_PositionSortie)
+                                    {
+                                        c.transformeEnVide();
+                                        Map.this.m_NombreBalleRouge--;
+                                        continue;
+                                    }
+                                }
                                 // On pousse la case vers le bas
                                 if(Map.this.pousseCase(c.getPosition(), Constantes.Direction.Bas))
                                     // Si la map c'est bien actualisée, on actualise la case également
                                     c.deplacement(Constantes.Direction.Bas);
+                            }
                 }
             }
         });

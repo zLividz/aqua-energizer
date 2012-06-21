@@ -53,6 +53,30 @@ public class Constantes
         public boolean contact(Position p)
         { return ((Math.abs(p.Ligne-this.Ligne) < 2) && (Math.abs(p.Colone-this.Colone) < 2)); }
         
+        @Override
+        public int hashCode()
+        {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + Colone;
+            result = prime * result + Ligne;
+            return result;
+        }
+        @Override
+        public boolean equals(Object obj)
+        {
+            if (this == obj) return true;
+            if (obj == null) return false;
+            if (getClass() != obj.getClass()) return false;
+            Position other = (Position)obj;
+            if (this.Colone != other.Colone) return false;
+            if (this.Ligne != other.Ligne) return false;
+            return true;
+        }
+
+
+
+
         /** Coordonnée en X */ public int Ligne ;
         /** Coordonnée en Y */ public int Colone; 
     }
