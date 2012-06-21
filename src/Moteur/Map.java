@@ -151,7 +151,7 @@ public class Map
             }
         });
         
-        Timer action = new Timer(1000, new ActionListener()
+        /*this.m_Timer = new Timer(100, new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent arg0)
@@ -159,7 +159,7 @@ public class Map
                 Map.this.m_Respire.start();
                 Map.this.m_DeplacementMonstres.start();
             }
-        });
+        });*/
         
         Reader r;
         try
@@ -238,7 +238,7 @@ public class Map
             throw new LevelException("Le niveau ne contient pas de sortie");
         
         // Démarrage des timers et listener
-        action.start();
+        //this.m_Timer.start();
         this.m_VerificationGravite.start();
     }// Fin du constructeur
     
@@ -345,8 +345,6 @@ public class Map
     }
     
     /**
-    
-    /**
      * Pousse la case indiquée en position dans la direction passée en parramètre
      * @param p La position de la case à déplacer
      * @param direction Direction du déplacement
@@ -398,6 +396,8 @@ public class Map
     private Thread m_VerificationGravite;
     private Thread m_DeplacementMonstres;
     private Thread m_Respire;
+    private Timer m_Timer;
+    
     
     // Liste des etres vivants
     private Personnage m_Personnage;
