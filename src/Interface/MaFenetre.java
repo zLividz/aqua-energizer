@@ -20,7 +20,7 @@ public class MaFenetre extends JPanel implements KeyListener
     /**
      * Constructeur de la classe
      */
-    public MaFenetre()
+    public MaFenetre(String code)
     {
         // Initialisation des champs
         this.m_NiveauCourrant = 1;
@@ -29,7 +29,12 @@ public class MaFenetre extends JPanel implements KeyListener
         setSize(Constantes.LargeurFenetre, Constantes.HauteurFenetre);
         setOpaque(true);
         addKeyListener(this);
-        changementNiveau(1, 30);
+        switch(code)
+        {
+            case "Niveau2" : changementNiveau(2, 30); break;
+            default : changementNiveau(1, 30); break;
+        }
+        
     }
     
     /**
