@@ -21,9 +21,7 @@ public class Case
     public Case(Constantes.Case typeCase, int ligne, int colone)
     {
         this.m_TypeCase = typeCase;
-        
-        this.m_Position.Ligne = ligne;
-        this.m_Position.Colone = colone;
+        this.m_Position = new Position(ligne, colone);
         switch (this.m_TypeCase)
         {
             case Vide : 

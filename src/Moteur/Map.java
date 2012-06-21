@@ -59,8 +59,13 @@ public class Map
                                 // On test si la boule est rouge et la sortie en dessous
                                 if(c.getType() == Constantes.Case.BalleRouge)
                                 {
+                                    System.out.println("Ecart rouge sortie " +
+                                                c.getPosition().Ligne + ":" + c.getPosition().Colone +
+                                                " | " +
+                                                Map.this.m_PositionSortie.Ligne + ":" + Map.this.m_PositionSortie.Colone);
                                     if(c.getPosition().addPosition(Constantes.Direction.Bas) == Map.this.m_PositionSortie)
                                     {
+                                        System.out.println("Balle rouge !");
                                         c.transformeEnVide();
                                         Map.this.m_NombreBalleRouge--;
                                         continue;
@@ -233,7 +238,7 @@ public class Map
                     case 'm' : caseLigne.add(new Case(Constantes.Case.Sable, p));  break;
                     case 's' : 
                         caseLigne.add(new Case(Constantes.Case.Sortie, p));
-                        this.m_PositionSortie = p;
+                        this.m_PositionSortie = new Position(p.Ligne, p.Colone);
                         break;
                     default : p.Colone--; break; // Si l'on ajoute pas de case, on fait en sorte de ne pas avancer
                 }
@@ -248,6 +253,7 @@ public class Map
             throw new LevelException("Position du joueur non trouvée dans la map");
         if(this.m_PositionSortie == null)
             throw new LevelException("Le niveau ne contient pas de sortie");
+        this.m_NombreBalleRougeTotale = this.m_NombreBalleRouge;
         
         // Démarrage des timers et listener
         //this.m_Timer.start();
@@ -441,6 +447,13 @@ public class Map
     public ArrayList< ArrayList<Moteur.Case> > getMap() { return this.m_Map; }
     private ArrayList< ArrayList<Moteur.Case> > m_Map;
     private int m_NombreBalleRouge;
+    private int m_NombreBalleRougeTotale;
+    
+    /**
+     * Permet de récupérer l'énergie du niveau
+     * @return Retourne un flottant, de 0.0 à 1.0
+     */
+    public float getEnergie() { return (float)(this.m_NombreBalleRougeTotale -this.m_NombreBalleRouge)/(float)this.m_NombreBalleRougeTotale; }
     
     /**
      * Retourne si le personnage peut sortir du niveau
