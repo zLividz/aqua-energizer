@@ -3,12 +3,13 @@ package Interface;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import Moteur.Map;
+import Moteur.Vivant.Crabe;
+import Moteur.Vivant.Poisson;
 import Interface.Constantes;
 
 /**
@@ -104,6 +105,21 @@ public class MaFenetre extends JPanel implements KeyListener
             }
         
         // Affichage des monstres
+        
+        for(Crabe c : this.m_MapCourrante.getCrabes())
+            g.drawImage(Interface.Images.Crabe,
+                        c.getPosition().Colone*Constantes.LargeurCase,
+                        c.getPosition().Ligne * Constantes.HauteurCase,
+                        null);
+        
+        for(Poisson p : this.m_MapCourrante.getPoissons())
+            g.drawImage(Interface.Images.Poisson.get(p.getDirectionPrecedente()),
+                    p.getPosition().Colone*Constantes.LargeurCase,
+                    p.getPosition().Ligne * Constantes.HauteurCase,
+                    null);
+        
+        
+        
         // Affichage du joueur
         g.drawImage(Interface.Images.Joueur, 
                     this.m_MapCourrante.getPositionPersonnage().Colone*Constantes.LargeurCase,

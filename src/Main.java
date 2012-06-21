@@ -23,7 +23,7 @@ public class Main
         try
         { Images.Init(); }
         catch(IOException e)
-        { System.out.println(e.getMessage()); return; }
+        { System.err.println("Erreur d'initialisation"); System.err.println(e.getMessage()); return; }
         
         try
         {
@@ -33,7 +33,9 @@ public class Main
             frame.setVisible(true);
         }
         catch(Exception e)
-        { System.err.println(e.getMessage()); } 
+        { 
+            System.err.println(e.getMessage()); 
+        } 
     }
 
 }

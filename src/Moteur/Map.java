@@ -381,7 +381,21 @@ public class Map
     // Liste des etres vivants
     private Personnage m_Personnage;
     private ArrayList<Crabe> m_Crabes;
+        /**
+         * Retourne l'ensemble des crabes de la map
+         * @return Retourne un ArrayList
+         * @see ArrayList
+         * @see Crabe
+         */
+        public ArrayList<Crabe> getCrabes() { return this.m_Crabes; }
     private ArrayList<Poisson> m_Poissons;
+        /**
+         * Retourne l'ensemble des poissons de la map
+         * @return Retourne un ArrayList
+         * @see ArrayList
+         * @see Poisson
+         */
+        public ArrayList<Poisson> getPoissons() { return this.m_Poissons; }
     
     // Equivalent de savoir si la clef à été prise ou pas encore
     private boolean m_PortesOuvertes;

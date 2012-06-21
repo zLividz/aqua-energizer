@@ -31,14 +31,17 @@ public class Images
         BalleRouge = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "boulle rouge.png")); 
         Clef = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "clef.png")); 
         
-        Bombe = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "")); 
+        Bombe = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "bombe.png")); 
         Sortie = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "sortie.png")); 
         Porte = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "porte.png"));
         
         Joueur = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "personnage.png"));
-        Crabe = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + ""));
+        Crabe = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "crabe.png"));
         Poisson = new HashMap<>();
-        Poisson.put(Moteur.Constantes.Direction.Haut, ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "poisson_haut.png")));
+        Poisson.put(Moteur.Constantes.Direction.Haut,   ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "poisson_haut.png")));
+        Poisson.put(Moteur.Constantes.Direction.Bas,    ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "poisson_bas.png")));
+        Poisson.put(Moteur.Constantes.Direction.Gauche, ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "poisson_gauche.png")));
+        Poisson.put(Moteur.Constantes.Direction.Droite, ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "poisson_droite.png")));
         
     }
 
