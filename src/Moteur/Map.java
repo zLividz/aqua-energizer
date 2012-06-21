@@ -1,5 +1,7 @@
 package Moteur;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -159,12 +161,21 @@ public class Map
             @Override
             public void run()
             {
-                Map.this.m_Personnage.decOxygene();
-                if(Map.this.m_Personnage.getOxygene() <= 0)
-                    Map.this.m_Perdu = true;
+                Timer respire = new Timer(1000, new ActionListener()
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        Map.this.m_Personnage.decOxygene();
+                        if(Map.this.m_Personnage.getOxygene() <= 0)
+                            Map.this.m_Perdu = true;
+                    }
+                });
+                respire.start();
+                
             }
         });
-        
+        this.m_Respire.start();
         /*this.m_Timer = new Timer(100, new ActionListener()
         {
             @Override

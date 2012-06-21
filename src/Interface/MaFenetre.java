@@ -46,6 +46,7 @@ public class MaFenetre extends JPanel implements KeyListener
         setSize(Constantes.LargeurFenetre, Constantes.HauteurFenetre);
         setOpaque(true);
         addKeyListener(this);
+        
         switch(code)
         {
             case "Niveau2" : changementNiveau(2, 30); break;
