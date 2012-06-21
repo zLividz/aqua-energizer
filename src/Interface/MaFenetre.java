@@ -69,37 +69,37 @@ public class MaFenetre extends JPanel implements KeyListener
                 switch(this.m_MapCourrante.getMap().get(i).get(j).getType())
                 {
                     case BalleBleue : 
-                        g.drawImage(Interface.Images.BalleBleue, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        g.drawImage(Interface.Images.BalleBleue, j*Constantes.LargeurCase, i*Constantes.HauteurCase, null);
                         break;
                     case BalleRouge :
-                        g.drawImage(Interface.Images.BalleRouge, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        g.drawImage(Interface.Images.BalleRouge, j*Constantes.LargeurCase, i*Constantes.HauteurCase, null);
                         break;
                     case Bombe :
-                        g.drawImage(Interface.Images.Bombe, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        g.drawImage(Interface.Images.Bombe, j*Constantes.LargeurCase, i*Constantes.HauteurCase, null);
                         break;
                     case Clef:
-                        g.drawImage(Interface.Images.Clef, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        g.drawImage(Interface.Images.Clef, j*Constantes.LargeurCase, i*Constantes.HauteurCase, null);
                         break;
                     case Indestructible : 
-                        g.drawImage(Interface.Images.Indestructible, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        g.drawImage(Interface.Images.Indestructible, j*Constantes.LargeurCase, i*Constantes.HauteurCase, null);
                         break;
                     case Pierre : 
-                        g.drawImage(Interface.Images.Pierre, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        g.drawImage(Interface.Images.Pierre, j*Constantes.LargeurCase, i*Constantes.HauteurCase, null);
                         break;
                     case Porte : 
-                        g.drawImage(Interface.Images.Porte, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        g.drawImage(Interface.Images.Porte, j*Constantes.LargeurCase, i*Constantes.HauteurCase, null);
                         break;
                     case Sable : 
-                        g.drawImage(Interface.Images.Sable, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        g.drawImage(Interface.Images.Sable, j*Constantes.LargeurCase, i*Constantes.HauteurCase, null);
                         break;
                     case Sortie :
-                        g.drawImage(Interface.Images.Sortie, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        g.drawImage(Interface.Images.Sortie, j*Constantes.LargeurCase, i*Constantes.HauteurCase, null);
                         break; 
                     case Vide : 
-                        g.drawImage(Interface.Images.Vide, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        g.drawImage(Interface.Images.Vide, j*Constantes.LargeurCase, i*Constantes.HauteurCase, null);
                         break;
                     default :
-                        g.drawImage(Interface.Images.Vide, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        g.drawImage(Interface.Images.Vide, j*Constantes.LargeurCase, i*Constantes.HauteurCase, null);
                         break;
                 }
             }

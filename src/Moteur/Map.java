@@ -110,15 +110,15 @@ public class Map
                 }
                 p.Colone++;
             }
-            if(this.m_Personnage == null) 
-                throw new LevelException("Position du joueur non trouvée dans la map");
-            if(this.m_PositionSortie == null)
-                throw new LevelException("Le niveau ne contient pas de sortie");
             
             this.m_Map.add(caseLigne);
             p.Ligne++;
             p.Colone = 0;
         }// Fin de lecture du fichier
+        if(this.m_Personnage == null) 
+            throw new LevelException("Position du joueur non trouvée dans la map");
+        if(this.m_PositionSortie == null)
+            throw new LevelException("Le niveau ne contient pas de sortie");
         
     }// Fin du constructeur
     

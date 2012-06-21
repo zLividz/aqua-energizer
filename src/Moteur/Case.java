@@ -2,6 +2,7 @@ package Moteur;
 
 import Moteur.Constantes;
 import Moteur.Constantes.Direction;
+import Moteur.Constantes.Position;
 
 /**
  * Classe qui va servir d'unité pour la map
@@ -89,8 +90,7 @@ public class Case
     public Case(Constantes.Case typeCase, Constantes.Position p)
     {
         this.m_TypeCase = typeCase;
-        this.m_Position.Ligne = p.Ligne;
-        this.m_Position.Colone = p.Colone;
+        this.m_Position = new Position(p.Ligne, p.Colone);
         switch (this.m_TypeCase)
         {
             case Vide : 
