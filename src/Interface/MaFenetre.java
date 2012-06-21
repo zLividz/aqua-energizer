@@ -1,13 +1,22 @@
 package Interface;
 
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
+import javax.swing.Timer;
 
 import Moteur.Map;
 import Moteur.Vivant.Crabe;
@@ -44,11 +53,27 @@ public class MaFenetre extends JPanel implements KeyListener
             case "Niveau4" : changementNiveau(4, 30); break;
             default : changementNiveau(1, 30); break;
         }
+
         this.m_BarreEnergie = new JProgressBar();
         this.m_BarreEnergie.setMaximum(100);
         this.m_BarreEnergie.setValue(0);
         this.m_BarreEnergie.setLocation(0, Constantes.HauteurFenetre - Constantes.HauteurCase);
+
+        this.m_Oxygene = new JLabel(((Integer)this.m_MapCourrante.getOxygene()).toString()); 
+        
+        this.m_Suicide = new JButton("Mort");
+        this.m_Suicide.addActionListener(new ActionListener()
+        { 
+            @Override public void actionPerformed(ActionEvent e) 
+            { 
+                MaFenetre.this.requestFocus();
+                try{ MaFenetre.this.changementNiveau(MaFenetre.this.m_NiveauCourrant, 30); }
+                catch(Exception err) { System.err.println(err.getMessage()); err.printStackTrace(); System.exit(1); }
+            }
+        });
+        this.add(this.m_Oxygene);
         this.add(this.m_BarreEnergie);
+        this.add(this.m_Suicide);
     }
     
     /**
@@ -95,6 +120,8 @@ public class MaFenetre extends JPanel implements KeyListener
     private int m_NiveauCourrant;
     
     private JProgressBar m_BarreEnergie;
+    private JLabel m_Oxygene;
+    private JButton m_Suicide;
     
     // Méthodes pour JPanel et KeyListener
     
@@ -103,6 +130,7 @@ public class MaFenetre extends JPanel implements KeyListener
      */
     public void affichageInformations()
     {
+        this.m_Oxygene.setText(((Integer)this.m_MapCourrante.getOxygene()).toString());
         this.m_BarreEnergie.setValue((int)(100*this.m_MapCourrante.getEnergie()));
     }
     
@@ -119,8 +147,7 @@ public class MaFenetre extends JPanel implements KeyListener
             {
                 int i = c.getPosition().Ligne,
                     j = c.getPosition().Colone;
-                // Le i++ de la ligne suivante permet de décaller l'affichage d'une ligne
-                switch(this.m_MapCourrante.getMap().get(i++).get(j).getType())
+                switch(this.m_MapCourrante.getMap().get(i).get(j).getType())
                 {
                     case BalleBleue : 
                         g.drawImage(Interface.Images.BalleBleue, j*Constantes.LargeurCase, i*Constantes.HauteurCase, null);
