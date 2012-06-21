@@ -10,6 +10,8 @@ import java.lang.management.ThreadInfo;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.Timer;
+
 import Exceptions.*;
 import Moteur.Constantes.Direction;
 import Moteur.Constantes.Position;
@@ -150,9 +152,18 @@ public class Map
             }
         });
         
+        Timer action = new Timer(1000, new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent arg0)
+            {
+                Map.this.m_Respire.start();
+                Map.this.m_DeplacementMonstres.start();
+            }
+        });
+        action.start();
         this.m_VerificationGravite.start();
-        this.m_DeplacementMonstres.start();
-        this.m_Respire.start();
+        
         
         
         Reader r;

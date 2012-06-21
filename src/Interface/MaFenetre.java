@@ -5,7 +5,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 import Moteur.Map;
 import Moteur.Vivant.Crabe;
@@ -46,12 +45,9 @@ public class MaFenetre extends JPanel implements KeyListener
         { this.m_MapCourrante = new Map(this.m_NiveauCourrant, oxygene); }
         catch (Exception e)
         { System.err.println(e.getMessage()); }
-        this.m_Timer = new Timer(1000, this.m_MapCourrante.listener());
-        this.m_Timer.start();
     }
     
     // Champs
-    private Timer m_Timer;
     private Map m_MapCourrante;
     private int m_NiveauCourrant;
     
