@@ -19,6 +19,7 @@ import Interface.Constantes;
 /**
  * @author Vincent
  */
+@SuppressWarnings("nls")
 public class MaFenetre extends JPanel implements KeyListener
 {
     /**
@@ -27,7 +28,7 @@ public class MaFenetre extends JPanel implements KeyListener
      * @throws LevelException Stop le processus si le chargement du niveau échoue
      * @throws CaseException Stop le processus en cas d'erreur
      */
-    public MaFenetre(String code) throws CaseException, LevelException
+     public MaFenetre(String code) throws CaseException, LevelException
     {
         // Initialisation des champs
         this.m_NiveauCourrant = 1;
@@ -118,7 +119,8 @@ public class MaFenetre extends JPanel implements KeyListener
             {
                 int i = c.getPosition().Ligne,
                     j = c.getPosition().Colone;
-                switch(this.m_MapCourrante.getMap().get(i).get(j).getType())
+                // Le i++ de la ligne suivante permet de décaller l'affichage d'une ligne
+                switch(this.m_MapCourrante.getMap().get(i++).get(j).getType())
                 {
                     case BalleBleue : 
                         g.drawImage(Interface.Images.BalleBleue, j*Constantes.LargeurCase, i*Constantes.HauteurCase, null);

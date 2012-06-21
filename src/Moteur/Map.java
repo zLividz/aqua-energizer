@@ -18,6 +18,7 @@ import Moteur.Vivant.*;
  * Classe moteur qui va gérer les interractions avec les cases
  * @author Petrolevb
  */
+@SuppressWarnings("synthetic-access")
 public class Map
 {
     /**
