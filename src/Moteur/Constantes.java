@@ -58,8 +58,8 @@ public class Constantes
         {
             final int prime = 31;
             int result = 1;
-            result = prime * result + Colone;
-            result = prime * result + Ligne;
+            result = prime * result + this.Colone;
+            result = prime * result + this.Ligne;
             return result;
         }
         @Override
@@ -69,9 +69,8 @@ public class Constantes
             if (obj == null) return false;
             if (getClass() != obj.getClass()) return false;
             Position other = (Position)obj;
-            if (this.Colone != other.Colone) return false;
-            if (this.Ligne != other.Ligne) return false;
-            return true;
+            if (this.Colone == other.Colone && this.Ligne == other.Ligne) return true;
+            return false;
         }
 
 

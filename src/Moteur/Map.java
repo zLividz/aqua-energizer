@@ -61,9 +61,11 @@ public class Map
                                 {
                                     System.out.println("Ecart rouge sortie " +
                                                 c.getPosition().Ligne + ":" + c.getPosition().Colone +
+                                                "-> " +
+                                                c.getPosition().addPosition(Constantes.Direction.Bas).Ligne + ":" + c.getPosition().addPosition(Constantes.Direction.Bas).Colone +
                                                 " | " +
                                                 Map.this.m_PositionSortie.Ligne + ":" + Map.this.m_PositionSortie.Colone);
-                                    if(c.getPosition().addPosition(Constantes.Direction.Bas) == Map.this.m_PositionSortie)
+                                    if(c.getPosition().addPosition(Constantes.Direction.Bas).equals(Map.this.m_PositionSortie))
                                     {
                                         System.out.println("Balle rouge !");
                                         c.transformeEnVide();
