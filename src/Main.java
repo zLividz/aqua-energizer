@@ -27,10 +27,10 @@ public class Main
         
         try
         {
-        JFrame frame = new JFrame();
-        frame.setSize(810, 610);
-        frame.getContentPane().add(new MaFenetre());
-        frame.setVisible(true);
+            JFrame frame = new JFrame();
+            frame.setSize(Interface.Constantes.LargeurFenetre, Interface.Constantes.HauteurFenetre);
+            frame.getContentPane().add(new MaFenetre());
+            frame.setVisible(true);
         }
         catch(Exception e)
         { System.err.println(e.getMessage()); } 

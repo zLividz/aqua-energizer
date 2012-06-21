@@ -102,13 +102,18 @@ public class Map
                         break;
                     case 'o' : caseLigne.add(new Case(Constantes.Case.Porte, p));  break;
                     case 'm' : caseLigne.add(new Case(Constantes.Case.Sable, p));  break;
-                    case 's' : caseLigne.add(new Case(Constantes.Case.Sortie, p));  break;
+                    case 's' : 
+                        caseLigne.add(new Case(Constantes.Case.Sortie, p));
+                        this.m_PositionSortie = p;
+                        break;
                     default : p.Colone--; break; // Si l'on ajoute pas de case, on fait en sorte de ne pas avancer
                 }
                 p.Colone++;
             }
             if(this.m_Personnage == null) 
                 throw new LevelException("Position du joueur non trouvée dans la map");
+            if(this.m_PositionSortie == null)
+                throw new LevelException("Le niveau ne contient pas de sortie");
             
             this.m_Map.add(caseLigne);
             p.Ligne++;
@@ -389,6 +394,17 @@ public class Map
     public ArrayList< ArrayList<Moteur.Case> > getMap() { return this.m_Map; }
     private ArrayList< ArrayList<Moteur.Case> > m_Map;
     private int m_NombreBalleRouge;
+    
+    /**
+     * Retourne si le personnage peut sortir du niveau
+     * @return Retourne un booléen
+     */
+    public boolean Sortie()
+    {
+        if(!this.Gagne()) return false;
+        return (this.m_Personnage.getPosition().addPosition(Direction.Bas) == this.m_PositionSortie);
+    }
+    private Position m_PositionSortie;
     
     /**
      * Retourne si la sortie est ouverte
