@@ -32,6 +32,9 @@ public class MaFenetre extends JPanel implements KeyListener
         changementNiveau(1, 30);
     }
     
+    /**
+     * Fonction en charge de faire recommencer le jeu, ou de faire continuer la partie en fonction de l'action
+     */
     public void verrificationFinNiveau()
     {
         System.out.println("Energie : " + this.m_MapCourrante.getEnergie());
@@ -65,7 +68,6 @@ public class MaFenetre extends JPanel implements KeyListener
     // Champs
     private Map m_MapCourrante;
     private int m_NiveauCourrant;
-    private Thread m_ThreadVerrif;
     
     // Méthodes pour JPanel et KeyListener
     

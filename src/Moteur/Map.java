@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.Timer;
-import javax.swing.plaf.SliderUI;
 
 import Exceptions.*;
 import Moteur.Constantes.Direction;
