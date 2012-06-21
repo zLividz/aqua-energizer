@@ -84,77 +84,84 @@ public class Map
             @Override
             public void run()
             {
-                
-                for (Poisson p : Map.this.m_Poissons)
+                Timer deplacement = new Timer(1000, new ActionListener()
                 {
-                    Direction depP = p.getDirectionPrecedente();
-                    Position posP = p.getPosition(),
-                             posSuiv = posP.addPosition(depP);
-                    // Si on peut immédiatement déplacer le poisson
-                    if(Map.this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
-                        p.deplacement(depP);
-                    // Sinon, on parcours toutes les directions envisageables
-                    else
-                        for(Constantes.Direction d : Constantes.Direction.values())
-                        {
-                            posSuiv = posP.addPosition(d);
-                            if(Map.this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
-                            { p.deplacement(d); break; }
-                        }
-                    // Sinon, on ne déplace pas le poisson, il reste sur place
-                    
-                    // Détection collision avec le joueur 
-                    collisionAvecJoueur(p.getPosition());
-                } // Fin foreach poisson
-                for(Crabe c : Map.this.m_Crabes)
-                {
-                    // Le crabe veut le joueur, d'abords il se met sur la même ligne
-                    Position posC = c.getPosition(),
-                             posJ = Map.this.m_Personnage.getPosition(),
-                             posSuiv;
-                    if( (posC.Ligne-posJ.Ligne) != 0)
+                    @Override
+                    public void actionPerformed(ActionEvent e)
                     {
-                        // On le déplace pour aller a l'alignement
-                        // Si le crabe est plus haut que le joueur
-                        if( (posC.Ligne-posJ.Ligne) > 0) 
+                        for (Poisson p : Map.this.m_Poissons)
                         {
-                            posSuiv = posC.addPosition(Direction.Bas);
+                            Direction depP = p.getDirectionPrecedente();
+                            Position posP = p.getPosition(),
+                                     posSuiv = posP.addPosition(depP);
+                            // Si on peut immédiatement déplacer le poisson
                             if(Map.this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
-                                c.deplacement(Direction.Bas);
-                        }
-                        else 
+                                p.deplacement(depP);
+                            // Sinon, on parcours toutes les directions envisageables
+                            else
+                                for(Constantes.Direction d : Constantes.Direction.values())
+                                {
+                                    posSuiv = posP.addPosition(d);
+                                    if(Map.this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
+                                    { p.deplacement(d); break; }
+                                }
+                            // Sinon, on ne déplace pas le poisson, il reste sur place
+                            
+                            // Détection collision avec le joueur 
+                            collisionAvecJoueur(p.getPosition());
+                        } // Fin foreach poisson
+                        for(Crabe c : Map.this.m_Crabes)
                         {
-                            posSuiv = posC.addPosition(Direction.Haut);
-                            if(Map.this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
-                            c.deplacement(Direction.Haut);
-                        }
-                    }
-                    // Sinon, il est sur la même ligne
-                    else
-                    {
-                        if( (posC.Colone-posJ.Colone) != 0)
-                        {
-                            // On le déplace pour aller a l'alignement
-                            // Si le crabe est plus a droite que le joueur
-                            if( (posC.Colone-posJ.Colone) > 0) 
+                            // Le crabe veut le joueur, d'abords il se met sur la même ligne
+                            Position posC = c.getPosition(),
+                                     posJ = Map.this.m_Personnage.getPosition(),
+                                     posSuiv;
+                            if( (posC.Ligne-posJ.Ligne) != 0)
                             {
-                                posSuiv = posC.addPosition(Direction.Gauche);
-                                if(Map.this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
-                                    c.deplacement(Direction.Gauche);
+                                // On le déplace pour aller a l'alignement
+                                // Si le crabe est plus haut que le joueur
+                                if( (posC.Ligne-posJ.Ligne) > 0) 
+                                {
+                                    posSuiv = posC.addPosition(Direction.Bas);
+                                    if(Map.this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
+                                        c.deplacement(Direction.Bas);
+                                }
+                                else 
+                                {
+                                    posSuiv = posC.addPosition(Direction.Haut);
+                                    if(Map.this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
+                                    c.deplacement(Direction.Haut);
+                                }
                             }
+                            // Sinon, il est sur la même ligne
                             else
                             {
-                                posSuiv = posC.addPosition(Direction.Droite);
-                                if(Map.this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
-                                    c.deplacement(Direction.Droite);
-                            }
-                        }
-                    } // Fin déplacement en colone
-                    
-                    // Detection des collisions avec le joueur
-                    collisionAvecJoueur(c.getPosition());
-                } // Fin foreach Crabes
-                
+                                if( (posC.Colone-posJ.Colone) != 0)
+                                {
+                                    // On le déplace pour aller a l'alignement
+                                    // Si le crabe est plus a droite que le joueur
+                                    if( (posC.Colone-posJ.Colone) > 0) 
+                                    {
+                                        posSuiv = posC.addPosition(Direction.Gauche);
+                                        if(Map.this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
+                                            c.deplacement(Direction.Gauche);
+                                    }
+                                    else
+                                    {
+                                        posSuiv = posC.addPosition(Direction.Droite);
+                                        if(Map.this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
+                                            c.deplacement(Direction.Droite);
+                                    }
+                                }
+                            } // Fin déplacement en colone
+                            
+                            // Detection des collisions avec le joueur
+                            collisionAvecJoueur(c.getPosition());
+                        } // Fin foreach Crabes
+                        
+                    }
+                });
+                deplacement.start();
             }
         });
         this.m_Respire = new Thread(new Runnable()
@@ -176,7 +183,6 @@ public class Map
                 
             }
         });
-        this.m_Respire.start();
         
         Reader r;
         try
@@ -255,8 +261,9 @@ public class Map
             throw new LevelException("Le niveau ne contient pas de sortie");
         this.m_NombreBalleRougeTotale = this.m_NombreBalleRouge;
         
-        // Démarrage des timers et listener
-        //this.m_Timer.start();
+        // Démarrage des threads
+        this.m_Respire.start();
+        this.m_DeplacementMonstres.start();
         this.m_VerificationGravite.start();
     }// Fin du constructeur
     
