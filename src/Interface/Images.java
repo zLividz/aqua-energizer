@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 
 /**
  * Ensemble des images pour le jeu
- * @author Vincent
+ * @author Vincent BELLEC
  */
 @SuppressWarnings("nls") 
 public class Images

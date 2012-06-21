@@ -6,7 +6,7 @@ import Moteur.Constantes.Direction;
 import Moteur.Constantes.Position;
 
 /**
- * @author Vincent
+ * @author Vincent BELLEC
  * @see Moteur.Vivant.IEtreVivant
  */
 public class Crabe extends Moteur.Case implements Moteur.Vivant.IEtreVivant

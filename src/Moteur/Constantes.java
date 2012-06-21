@@ -2,7 +2,7 @@ package Moteur;
 
 /**
  * Classe définissant les diverses constantes utilisées pour le moteur
- * @author Petrolevb
+ * @author Vincent BELLEC
  *
  */
 public class Constantes

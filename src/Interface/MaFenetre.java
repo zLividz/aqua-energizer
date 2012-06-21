@@ -1,10 +1,6 @@
 package Interface;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -14,10 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JProgressBar;
-import javax.swing.Timer;
-
 import Moteur.Map;
 import Moteur.Vivant.Crabe;
 import Moteur.Vivant.Poisson;
@@ -26,7 +19,7 @@ import Exceptions.LevelException;
 import Interface.Constantes;
 
 /**
- * @author Vincent
+ * @author Vincent BELLEC
  */
 @SuppressWarnings("nls")
 public class MaFenetre extends JPanel implements KeyListener
@@ -123,9 +116,8 @@ public class MaFenetre extends JPanel implements KeyListener
     private JProgressBar m_BarreEnergie;
     private JLabel m_Oxygene;
     private JButton m_Suicide;
-    
+
     // Méthodes pour JPanel et KeyListener
-    
     /**
      * Mise à jour des diverses informations
      */

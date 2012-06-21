@@ -4,7 +4,7 @@ import Moteur.Constantes;
 
 /**
  * Interface qui va définir les fonctions essentielles des êtres vivants
- * @author Petrolevb
+ * @author Vincent BELLEC
  *
  */
 public interface IEtreVivant

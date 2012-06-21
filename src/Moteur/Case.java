@@ -6,7 +6,7 @@ import Moteur.Constantes.Position;
 
 /**
  * Classe qui va servir d'unité pour la map
- * @author Petrolevb
+ * @author Vincent BELLEC
  *
  */
 public class Case

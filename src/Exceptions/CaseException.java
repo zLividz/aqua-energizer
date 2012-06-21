@@ -3,7 +3,7 @@ package Exceptions;
 
 /**
  * Classe fille d'Exception qui va gérer les exceptions des cases
- * @author Petrolevb
+ * @author Vincent BELLEC
  * @see Exception
  */
 public class CaseException extends Exception

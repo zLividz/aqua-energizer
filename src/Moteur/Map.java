@@ -18,7 +18,7 @@ import Moteur.Vivant.*;
 
 /**
  * Classe moteur qui va gérer les interractions avec les cases
- * @author Petrolevb
+ * @author Vincent BELLEC
  */
 @SuppressWarnings("synthetic-access")
 public class Map
@@ -84,6 +84,7 @@ public class Map
             @Override
             public void run()
             {
+                
                 for (Poisson p : Map.this.m_Poissons)
                 {
                     Direction depP = p.getDirectionPrecedente();
@@ -176,15 +177,6 @@ public class Map
             }
         });
         this.m_Respire.start();
-        /*this.m_Timer = new Timer(100, new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent arg0)
-            {
-                Map.this.m_Respire.start();
-                Map.this.m_DeplacementMonstres.start();
-            }
-        });*/
         
         Reader r;
         try
@@ -428,7 +420,6 @@ public class Map
     private Thread m_VerificationGravite;
     private Thread m_DeplacementMonstres;
     private Thread m_Respire;
-    private Timer m_Timer;
     
     
     // Liste des etres vivants

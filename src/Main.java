@@ -8,7 +8,7 @@ import Interface.MaFenetre;
 
 /**
  * Classe principale d'entrée du programme
- * @author Petrolevb
+ * @author Vincent BELLEC
  *
  */
 public class Main

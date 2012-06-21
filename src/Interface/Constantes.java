@@ -1,7 +1,7 @@
 package Interface;
 
 /**
- * @author Petrolevb
+ * @author Vincent BELLEC
  *
  */
 public class Constantes
