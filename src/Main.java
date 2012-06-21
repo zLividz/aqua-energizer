@@ -29,16 +29,14 @@ public class Main
         {
             JFrame frame = new JFrame();
             frame.setSize(Interface.Constantes.LargeurFenetre, Interface.Constantes.HauteurFenetre);
-            final MaFenetre fenetre = new MaFenetre("");
+            final MaFenetre fenetre = new MaFenetre("Niveau2");
             frame.getContentPane().add(fenetre);
             frame.addKeyListener(fenetre);
             
             frame.setVisible(true);
         }
         catch(Exception e)
-        { 
-            System.err.println(e.getMessage()); 
-        } 
+        { System.err.println(e.getMessage()); e.printStackTrace(); } 
     }
 
 }

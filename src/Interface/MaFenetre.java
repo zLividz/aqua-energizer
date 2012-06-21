@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import Moteur.Map;
 import Moteur.Vivant.Crabe;
 import Moteur.Vivant.Poisson;
+import Exceptions.CaseException;
+import Exceptions.LevelException;
 import Interface.Constantes;
 
 /**
@@ -19,8 +21,11 @@ public class MaFenetre extends JPanel implements KeyListener
 {
     /**
      * Constructeur de la classe
+     * @param code Code pour pouvoir directement accéder à un autre niveau
+     * @throws LevelException Stop le processus si le chargement du niveau échoue
+     * @throws CaseException Stop le processus en cas d'erreur
      */
-    public MaFenetre(String code)
+    public MaFenetre(String code) throws CaseException, LevelException
     {
         // Initialisation des champs
         this.m_NiveauCourrant = 1;
@@ -39,8 +44,10 @@ public class MaFenetre extends JPanel implements KeyListener
     
     /**
      * Fonction en charge de faire recommencer le jeu, ou de faire continuer la partie en fonction de l'action
+     * @throws LevelException stop le programme en cas d'erreur lors du changement de niveau
+     * @throws CaseException Stop le processus en cas d'erreur
      */
-    public void verrificationFinNiveau()
+    public void verrificationFinNiveau() throws CaseException, LevelException
     {
         System.out.println("Energie : " + this.m_MapCourrante.getEnergie());
         if(this.m_MapCourrante.Sortie())
@@ -60,14 +67,19 @@ public class MaFenetre extends JPanel implements KeyListener
      * Recharge un nouveau Niveau
      * @param niveau Le niveau à charger
      * @param oxygene L'oxygène disponnible au joueur pour le niveau
+     * @throws LevelException Stop le processus en cas d'erreur
+     * @throws CaseException Stop le processus en cas d'erreur
      */
-    public void changementNiveau(int niveau, int oxygene)
+    public void changementNiveau(int niveau, int oxygene) throws LevelException, CaseException
     {
         this.m_NiveauCourrant = niveau;
-        try
-        { this.m_MapCourrante = new Map(this.m_NiveauCourrant, oxygene, this); }
-        catch (Exception e)
-        { System.err.println(e.getMessage()); }
+        try { this.m_MapCourrante = new Map(this.m_NiveauCourrant, oxygene, this); }
+        catch (LevelException e) 
+        { 
+            System.err.println(e.getMessage()); 
+            e.printStackTrace();
+            throw new LevelException("End of Program");
+        }
     }
 
     // Champs
@@ -177,7 +189,19 @@ public class MaFenetre extends JPanel implements KeyListener
                 break;
         }
         this.repaint();
-        this.verrificationFinNiveau();
+        try { this.verrificationFinNiveau(); }
+        catch(LevelException le)
+        {
+            System.err.println(le.getMessage());
+            le.printStackTrace();
+            System.exit(1); 
+        }
+        catch(CaseException ce)
+        {
+            System.err.println(ce.getMessage());
+            ce.printStackTrace();
+            System.exit(1); 
+        }
     }
 
     @Override
