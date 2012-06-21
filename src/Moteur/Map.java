@@ -150,11 +150,16 @@ public class Map
         {
             caseDeplacement.transformeEnVide();
             this.m_Personnage.deplacement(directionDeplacement);
+            while(this.verrifieGravite()) this.verrifieGravite();
             return true;
         }
         // Si le joueur va dans le vide, rien de spécial
         if(caseDeplacement.getType() == Constantes.Case.Vide)
-        { this.m_Personnage.deplacement(directionDeplacement); return true; }
+        {
+            this.m_Personnage.deplacement(directionDeplacement); 
+            while(this.verrifieGravite()) this.verrifieGravite();
+            return true; 
+        }
         
         // Si le joueur prend la clef
         if(caseDeplacement.getType() == Constantes.Case.Clef)
@@ -163,6 +168,7 @@ public class Map
             this.m_PortesOuvertes = true;
             this.ouvrePortes();
             this.m_Personnage.deplacement(directionDeplacement);
+            while(this.verrifieGravite()) this.verrifieGravite();
             return true;
         }
         
@@ -170,7 +176,11 @@ public class Map
         if(caseDeplacement.estDeplacable())
             // Si on a pu pousser la case
             if(this.pousseCase(this.m_Personnage.getPosition().addPosition(directionDeplacement), directionDeplacement))
-            { this.m_Personnage.deplacement(directionDeplacement); return true; }
+            { 
+                this.m_Personnage.deplacement(directionDeplacement); 
+                while(this.verrifieGravite()) this.verrifieGravite();
+                return true; 
+            }
         
         // C'est que on ne peut pas se déplacer
         return false;
@@ -343,16 +353,19 @@ public class Map
     
     /**
      * Mise a jour de tous les blocs soumis à la gravitée
+     * @return Retourne si il y a eu un changement
      */
-    public void verrifieGravite()
+    public boolean verrifieGravite()
     {
+        boolean modification = false;
         for(ArrayList<Case> ac : this.m_Map)
             for(Case c : ac)
                 if(c.estDeplacable())
                     // On pousse la case vers le bas
                     if(this.pousseCase(c.getPosition(), Constantes.Direction.Bas))
                         // Si la map c'est bien actualisée, on actualise la case également
-                        c.deplacement(Constantes.Direction.Bas);
+                    { c.deplacement(Constantes.Direction.Bas); modification = true; }
+        return modification;
     }
     
     
@@ -365,7 +378,6 @@ public class Map
     {
         return new ActionListener()
         {
-            
             @Override
             public void actionPerformed(ActionEvent e)
             {
