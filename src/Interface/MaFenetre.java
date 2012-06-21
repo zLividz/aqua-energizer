@@ -44,6 +44,7 @@ public class MaFenetre extends JPanel implements KeyListener
         catch (Exception e)
         { System.err.println(e.getMessage()); }
         this.m_Timer = new Timer(1000, this.m_MapCourrante.listener());
+        this.m_Timer.start();
     }
     
     

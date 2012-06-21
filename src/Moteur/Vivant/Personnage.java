@@ -47,7 +47,7 @@ public class Personnage extends Moteur.Case implements Moteur.Vivant.IEtreVivant
     
     /**
      * Retourne l'oxygène restant au joueur
-     * @return
+     * @return Retourne un entier
      */
     public int getOxygene() { return this.m_Oxygene; }
     private int m_Oxygene;
