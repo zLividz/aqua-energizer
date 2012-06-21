@@ -3,6 +3,7 @@ package Interface;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -58,9 +59,11 @@ public class MaFenetre extends JPanel implements KeyListener
     public void paintComponent(Graphics g)
     {
         // Affichage de toutes les cases de la map
-        for(int i = 0; i < this.m_MapCourrante.getMap().size(); i++)
-            for(int j =  0; j < this.m_MapCourrante.getMap().get(i).size(); j++)
+        for(ArrayList<Moteur.Case> ac : this.m_MapCourrante.getMap())
+            for(Moteur.Case c : ac)
             {
+                int i = c.getPosition().Ligne,
+                    j = c.getPosition().Colone;
                 switch(this.m_MapCourrante.getMap().get(i).get(j).getType())
                 {
                     case BalleBleue : 

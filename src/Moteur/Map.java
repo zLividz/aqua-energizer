@@ -1,7 +1,5 @@
 package Moteur;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -53,6 +51,7 @@ public class Map
             {
                 while(true)
                 {
+                    ArrayList<Case> caseAModifier = new ArrayList<>();
                     for(ArrayList<Case> ac : Map.this.m_Map)
                         for(Case c : ac)
                             if(c.estDeplacable())
@@ -67,11 +66,12 @@ public class Map
                                         continue;
                                     }
                                 }
-                                // On pousse la case vers le bas
-                                if(Map.this.pousseCase(c.getPosition(), Constantes.Direction.Bas))
-                                    // Si la map c'est bien actualisée, on actualise la case également
-                                    c.deplacement(Constantes.Direction.Bas);
+                                caseAModifier.add(c);
                             }
+                    // On aplique les modifications
+                    for(Case c : caseAModifier)
+                        // On pousse la case vers le bas
+                        Map.this.pousseCase(c.getPosition(), Constantes.Direction.Bas);
                 }
             }
         });
