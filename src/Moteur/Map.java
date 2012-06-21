@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.Timer;
+import javax.swing.plaf.SliderUI;
 
 import Exceptions.*;
 import Moteur.Constantes.Direction;
@@ -24,11 +25,12 @@ public class Map
      * Constructeur de la classe
      * @param niveau Numéros du niveau
      * @param oxygene Oxygène disponnible pour le joueur
+     * @param fenetre parramêtre pour réactualiser l'affichage
      * @throws LevelException Exception levée si le niveau n'est pas trouvé
      * @throws CaseException Exception levée s'il y a un problème de case
      */
     @SuppressWarnings("nls") 
-    public Map(int niveau, int oxygene) throws LevelException, CaseException
+    public Map(int niveau, int oxygene, final Interface.MaFenetre fenetre) throws LevelException, CaseException
     {
         String nomFichier = "src" + File.separator + 
                             "Ressources" + File.separator + 
@@ -58,27 +60,20 @@ public class Map
                             {
                                 // On test si la boule est rouge et la sortie en dessous
                                 if(c.getType() == Constantes.Case.BalleRouge)
-                                {
-                                    System.out.println("Ecart rouge sortie " +
-                                                c.getPosition().Ligne + ":" + c.getPosition().Colone +
-                                                "-> " +
-                                                c.getPosition().addPosition(Constantes.Direction.Bas).Ligne + ":" + c.getPosition().addPosition(Constantes.Direction.Bas).Colone +
-                                                " | " +
-                                                Map.this.m_PositionSortie.Ligne + ":" + Map.this.m_PositionSortie.Colone);
                                     if(c.getPosition().addPosition(Constantes.Direction.Bas).equals(Map.this.m_PositionSortie))
                                     {
-                                        System.out.println("Balle rouge !");
                                         c.transformeEnVide();
                                         Map.this.m_NombreBalleRouge--;
                                         continue;
                                     }
-                                }
                                 caseAModifier.add(c);
                             }
                     // On aplique les modifications
                     for(Case c : caseAModifier)
                         // On pousse la case vers le bas
                         Map.this.pousseCase(c.getPosition(), Constantes.Direction.Bas);
+                    fenetre.repaint();
+                    try { Thread.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
                 }
             }
         });

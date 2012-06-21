@@ -14,7 +14,6 @@ import Interface.Constantes;
 
 /**
  * @author Vincent
- *
  */
 public class MaFenetre extends JPanel implements KeyListener
 {
@@ -43,11 +42,11 @@ public class MaFenetre extends JPanel implements KeyListener
     {
         this.m_NiveauCourrant = niveau;
         try
-        { this.m_MapCourrante = new Map(this.m_NiveauCourrant, oxygene); }
+        { this.m_MapCourrante = new Map(this.m_NiveauCourrant, oxygene, this); }
         catch (Exception e)
         { System.err.println(e.getMessage()); }
     }
-    
+
     // Champs
     private Map m_MapCourrante;
     private int m_NiveauCourrant;
