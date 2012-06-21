@@ -3,11 +3,13 @@ package Interface;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import Moteur.Map;
+import Interface.Constantes;
 
 /**
  * @author Vincent
@@ -54,13 +56,55 @@ public class MaFenetre extends JPanel implements KeyListener
     private int m_NiveauCourrant;
     
     
-    
-    
     // Méthodes pour JPanel et KeyListener
     
     @Override
     public void paintComponent(Graphics g)
     {
+        // Affichage de toutes les cases de la map
+        for(int i = 0; i < this.m_MapCourrante.getMap().size(); i++)
+            for(int j =  0; j < this.m_MapCourrante.getMap().get(i).size(); j++)
+            {
+                switch(this.m_MapCourrante.getMap().get(i).get(j).getType())
+                {
+                    case BalleBleue : 
+                        g.drawImage(Interface.Images.BalleBleue, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        break;
+                    case BalleRouge :
+                        g.drawImage(Interface.Images.BalleRouge, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        break;
+                    case Bombe :
+                        g.drawImage(Interface.Images.Bombe, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        break;
+                    case Clef:
+                        g.drawImage(Interface.Images.Clef, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        break;
+                    case Indestructible : 
+                        g.drawImage(Interface.Images.Indestructible, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        break;
+                    case Pierre : 
+                        g.drawImage(Interface.Images.Pierre, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        break;
+                    case Porte : 
+                        g.drawImage(Interface.Images.Porte, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        break;
+                    case Sable : 
+                        g.drawImage(Interface.Images.Sable, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        break;
+                    case Sortie :
+                        g.drawImage(Interface.Images.Sortie, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        break; 
+                    case Vide : 
+                        g.drawImage(Interface.Images.Vide, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        break;
+                    default :
+                        g.drawImage(Interface.Images.Vide, i*Constantes.LargeurCase, j*Constantes.HauteurCase, null);
+                        break;
+                }
+            }
+        
+        // Affichage des monstres
+        // Affichage du joueur
         //g.drawImage(this.m_Img, 0, 0, null); 
         
     }
