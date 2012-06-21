@@ -1,7 +1,11 @@
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import Interface.Images;
 import Interface.MaFenetre;
@@ -29,7 +33,13 @@ public class Main
         {
             JFrame frame = new JFrame();
             frame.setSize(Interface.Constantes.LargeurFenetre, Interface.Constantes.HauteurFenetre);
-            frame.getContentPane().add(new MaFenetre());
+            final MaFenetre fenetre = new MaFenetre();
+            frame.getContentPane().add(fenetre);
+            frame.getContentPane().addKeyListener(new KeyAdapter()
+            {
+                @Override public void keyTyped(KeyEvent e)
+                { fenetre.keyPressed(e); }
+            });
             frame.setVisible(true);
         }
         catch(Exception e)
