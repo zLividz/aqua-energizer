@@ -32,7 +32,7 @@ public class Main
             final MaFenetre fenetre = new MaFenetre("");
             frame.getContentPane().add(fenetre);
             frame.addKeyListener(fenetre);
-            
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
         }
         catch(Exception e)
