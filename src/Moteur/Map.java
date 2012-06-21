@@ -134,15 +134,15 @@ public class Map
                                 // Si le crabe est plus haut que le joueur
                                 if( (posC.Ligne-posJ.Ligne) > 0) 
                                 {
-                                    posSuiv = posC.addPosition(Direction.Bas);
+                                    posSuiv = posC.addPosition(Direction.Haut);
                                     if(Map.this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
-                                        c.deplacement(Direction.Bas);
+                                        c.deplacement(Direction.Haut);
                                 }
                                 else 
                                 {
-                                    posSuiv = posC.addPosition(Direction.Haut);
+                                    posSuiv = posC.addPosition(Direction.Bas);
                                     if(Map.this.m_Map.get(posSuiv.Ligne).get(posSuiv.Colone).getType() == Constantes.Case.Vide)
-                                    c.deplacement(Direction.Haut);
+                                    c.deplacement(Direction.Bas);
                                 }
                             }
                             // Sinon, il est sur la même ligne
@@ -400,7 +400,10 @@ public class Map
         
         if(caseDestination.getTombe())
         {
-            this.collisionAvecJoueur(caseDestination.getPosition());
+            // Collision avec la case d'en dessous, si c'est le joueur
+            if(p.addPosition(Constantes.Direction.Bas).equals(this.m_Personnage.getPosition()))
+                this.collisionAvecJoueur(caseDestination.getPosition());
+            
             if(caseDestination.getType() == Constantes.Case.Bombe)
             { this.explosion(caseDestination.getPosition()); return true; }
         }

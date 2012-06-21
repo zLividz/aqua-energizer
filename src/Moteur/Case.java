@@ -58,7 +58,7 @@ public class Case
                 this.m_EstDestructible = false;
                 break;
             case Clef :
-                this.m_EstDeplacable = false;
+                this.m_EstDeplacable = true;
                 this.m_EstDestructible = true;
                 break;
             case Sortie : 

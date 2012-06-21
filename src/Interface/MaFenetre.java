@@ -53,19 +53,22 @@ public class MaFenetre extends JPanel implements KeyListener
         this.m_BarreEnergie.setValue(0);
         this.m_BarreEnergie.setLocation(0, Constantes.HauteurFenetre - Constantes.HauteurCase);
 
-        this.m_Oxygene = new JLabel(((Integer)this.m_MapCourrante.getOxygene()).toString()); 
+        this.m_Oxygene = new JLabel("Oxygène : " + Integer.valueOf(this.m_MapCourrante.getOxygene()).toString());
         
         this.m_Suicide = new JButton("Mort");
+        this.m_Suicide.setFocusable(false);
         this.m_Suicide.addActionListener(new ActionListener()
         { 
             @Override public void actionPerformed(ActionEvent e) 
-            { 
+            {
                 MaFenetre.this.requestFocus();
                 try{ MaFenetre.this.changementNiveau(MaFenetre.this.m_NiveauCourrant, 30); }
                 catch(Exception err) { System.err.println(err.getMessage()); err.printStackTrace(); System.exit(1); }
             }
         });
+        
         this.add(this.m_Oxygene);
+        this.add(new JLabel("Energie : "));
         this.add(this.m_BarreEnergie);
         this.add(this.m_Suicide);
     }
@@ -118,19 +121,17 @@ public class MaFenetre extends JPanel implements KeyListener
     private JLabel m_Oxygene;
     private JButton m_Suicide;
 
-    // Méthodes pour JPanel et KeyListener
     /**
      * Mise à jour des diverses informations
      */
     public void affichageInformations()
     {
-        this.m_Oxygene.setText(((Integer)this.m_MapCourrante.getOxygene()).toString());
+        this.m_Oxygene.setText("Oxygène : " + Integer.valueOf(this.m_MapCourrante.getOxygene()).toString());
         this.m_BarreEnergie.setValue((int)(100*this.m_MapCourrante.getEnergie()));
     }
     
-    
-    @Override
-    public void paintComponent(Graphics g)
+    // Méthodes pour JPanel et KeyListener
+    @Override public void paintComponent(Graphics g)
     {
         // On met a jour les informations (au cas où)
         this.affichageInformations();
@@ -180,7 +181,6 @@ public class MaFenetre extends JPanel implements KeyListener
             }
         
         // Affichage des monstres
-        
         for(Crabe c : this.m_MapCourrante.getCrabes())
             g.drawImage(Interface.Images.Crabe,
                         c.getPosition().Colone*Constantes.LargeurCase,
@@ -194,17 +194,14 @@ public class MaFenetre extends JPanel implements KeyListener
                     null);
         
         
-        
         // Affichage du joueur
         g.drawImage(Interface.Images.Joueur, 
                     this.m_MapCourrante.getPositionPersonnage().Colone*Constantes.LargeurCase,
                     this.m_MapCourrante.getPositionPersonnage().Ligne*Constantes.HauteurCase,
                     null);
-        
     }
-    
-    @Override
-    public void keyPressed(KeyEvent e)
+
+    @Override public void keyPressed(KeyEvent e)
     {
         switch(e.getKeyCode())
         {
@@ -250,18 +247,7 @@ public class MaFenetre extends JPanel implements KeyListener
         }
     }
 
-    @Override
-    public void keyReleased(KeyEvent arg0)
-    {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void keyTyped(KeyEvent arg0)
-    {
-        // TODO Auto-generated method stub
-        
-    }
+    @Override public void keyReleased(KeyEvent arg0) { /*  TODO Auto-generated method stub */}
+    @Override public void keyTyped(KeyEvent arg0) { /* TODO Auto-generated method stub */ }
 
 }
