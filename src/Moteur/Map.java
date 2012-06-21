@@ -1,5 +1,7 @@
 package Moteur;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,11 +24,12 @@ public class Map
     /**
      * Constructeur de la classe
      * @param niveau Numéros du niveau
+     * @param oxygene Oxygène disponnible pour le joueur
      * @throws LevelException Exception levée si le niveau n'est pas trouvé
      * @throws CaseException Exception levée s'il y a un problème de case
      */
     @SuppressWarnings("nls") 
-    public Map(int niveau) throws LevelException, CaseException
+    public Map(int niveau, int oxygene) throws LevelException, CaseException
     {
         String nomFichier = "src" + File.separator + 
                             "Ressources" + File.separator + 
@@ -81,7 +84,7 @@ public class Map
                     case 'I' : caseLigne.add(new Case(Constantes.Case.Indestructible, p));  break;
                     case 'J' :
                         caseLigne.add(new Case(Constantes.Case.Vide, p));
-                        this.m_Personnage = new Personnage(p);
+                        this.m_Personnage = new Personnage(p, oxygene);
                         break;
                     case 'D' : caseLigne.add(new Case(Constantes.Case.Pierre, p));  break;
                     case 'p' : 
@@ -286,8 +289,6 @@ public class Map
         } // Fin foreach Crabes
     }
     
-    
-    
     /**
      * Pousse la case indiquée en position dans la direction passée en parramètre
      * @param p La position de la case à déplacer
@@ -350,6 +351,28 @@ public class Map
                         c.deplacement(Constantes.Direction.Bas);
     }
     
+    
+    /**
+     * Listener qui à chaque appel va décrémenter l'oxygene du joueur et déplacer les monstres
+     * @return Retourne un ActionListener
+     * @see java.awt.event.ActionListener
+     */
+    public ActionListener listener()
+    {
+        return new ActionListener()
+        {
+            
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                m_Personnage.decOxygene();
+                deplacementMonstres();
+                
+            }
+        };
+    }
+    
+    
     // Liste des etres vivants
     private Personnage m_Personnage;
     private ArrayList<Crabe> m_Crabes;
@@ -367,6 +390,11 @@ public class Map
     private ArrayList< ArrayList<Moteur.Case> > m_Map;
     private int m_NombreBalleRouge;
     
+    /**
+     * Retourne si la sortie est ouverte
+     * @return Retourne si toutes les balles rouges ont été rentrées
+     */
+    public boolean Gagne() { return this.m_NombreBalleRouge == 0; }
     /**
      * Retourne si la map est perdue : si le joueur est mort
      * @return Retourne un booléen

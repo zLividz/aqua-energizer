@@ -6,8 +6,10 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import Exceptions.CaseException;
+import Exceptions.LevelException;
 import Moteur.Map;
 
 /**
@@ -18,32 +20,39 @@ public class MaFenetre extends JPanel implements KeyListener
 {
     /**
      * Constructeur de la classe
-     * @throws Exception Exception de conception
      */
-    @SuppressWarnings("nls")
-    public MaFenetre() throws Exception
+    public MaFenetre()
     {
         // Initialisation des champs
-        this.m_Maps = new ArrayList<>();
         this.m_NiveauCourrant = 1;
-        try
-        {   this.m_Maps.add(new Map(1)); }
-        catch(CaseException e)
-        { 
-            System.err.println(e.getMessage()); 
-            throw new Exception("Erreur d'implementation sur la position initiale du joueur");
-        }
         
         // Initialisation de la fenetre
         setSize(Constantes.LargeurFenetre, Constantes.HauteurFenetre);
         setOpaque(true);
         addKeyListener(this);
+        changementNiveau(1, 30);
         
+    }
+    
+    /**
+     * Recharge un nouveau Niveau
+     * @param niveau Le niveau à charger
+     * @param oxygene L'oxygène disponnible au joueur pour le niveau
+     */
+    public void changementNiveau(int niveau, int oxygene)
+    {
+        this.m_NiveauCourrant = niveau;
+        try
+        { this.m_MapCourrante = new Map(this.m_NiveauCourrant, oxygene); }
+        catch (Exception e)
+        { System.err.println(e.getMessage()); }
+        this.m_Timer = new Timer(1000, this.m_MapCourrante.listener());
     }
     
     
     // Champs
-    private ArrayList<Map> m_Maps;
+    private Timer m_Timer;
+    private Map m_MapCourrante;
     private int m_NiveauCourrant;
     
     
@@ -66,25 +75,25 @@ public class MaFenetre extends JPanel implements KeyListener
             // Déplacement vers le haut
             case KeyEvent.VK_Z : 
             case KeyEvent.VK_UP : 
-                this.m_Maps.get(this.m_NiveauCourrant).deplacementPersonnage(Moteur.Constantes.Direction.Haut);
+                this.m_MapCourrante.deplacementPersonnage(Moteur.Constantes.Direction.Haut);
                 break;
                 
             // Décplacement vers le bas
             case KeyEvent.VK_S : 
             case KeyEvent.VK_DOWN : 
-                this.m_Maps.get(this.m_NiveauCourrant).deplacementPersonnage(Moteur.Constantes.Direction.Bas);
+                this.m_MapCourrante.deplacementPersonnage(Moteur.Constantes.Direction.Bas);
                 break;
                 
             // Déplacement vers la droite
             case KeyEvent.VK_D : 
             case KeyEvent.VK_RIGHT : 
-                this.m_Maps.get(this.m_NiveauCourrant).deplacementPersonnage(Moteur.Constantes.Direction.Droite);
+                this.m_MapCourrante.deplacementPersonnage(Moteur.Constantes.Direction.Droite);
                 break;
                 
             //Déplacement vers la gauche
             case KeyEvent.VK_Q : 
             case KeyEvent.VK_LEFT : 
-                this.m_Maps.get(this.m_NiveauCourrant).deplacementPersonnage(Moteur.Constantes.Direction.Gauche);
+                this.m_MapCourrante.deplacementPersonnage(Moteur.Constantes.Direction.Gauche);
                 break;
         }
         
