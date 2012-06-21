@@ -131,7 +131,7 @@ public class MaFenetre extends JPanel implements KeyListener
     @Override
     public void keyPressed(KeyEvent e)
     {
-        System.out.println("Test");
+        System.out.println("Position : " + this.m_MapCourrante.getPositionPersonnage().Ligne + " : " + this.m_MapCourrante.getPositionPersonnage().Colone);
         switch(e.getKeyCode())
         {
             // Déplacement vers le haut
@@ -158,6 +158,7 @@ public class MaFenetre extends JPanel implements KeyListener
                 this.m_MapCourrante.deplacementPersonnage(Moteur.Constantes.Direction.Gauche);
                 break;
         }
+        System.out.println("Position : " + this.m_MapCourrante.getPositionPersonnage().Ligne + " : " + this.m_MapCourrante.getPositionPersonnage().Colone);
         this.repaint();
     }
 

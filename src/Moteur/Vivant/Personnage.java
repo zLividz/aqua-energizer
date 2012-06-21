@@ -26,16 +26,16 @@ public class Personnage extends Moteur.Case implements Moteur.Vivant.IEtreVivant
         switch(directionDeplacement)
         {
             case Haut : 
-                this.m_Position.Colone++;
+                this.m_Position.Ligne--;
                 break;
             case Bas : 
-                this.m_Position.Colone--;
-                break;
-            case Droite : 
                 this.m_Position.Ligne++;
                 break;
+            case Droite : 
+                this.m_Position.Colone++;
+                break;
             case Gauche : 
-                this.m_Position.Ligne--;
+                this.m_Position.Colone--;
                 break;
         }
     }
