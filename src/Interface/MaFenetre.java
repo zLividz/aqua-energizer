@@ -3,13 +3,10 @@ package Interface;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import Exceptions.CaseException;
-import Exceptions.LevelException;
 import Moteur.Map;
 
 /**
