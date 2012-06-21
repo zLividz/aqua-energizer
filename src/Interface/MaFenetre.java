@@ -105,7 +105,10 @@ public class MaFenetre extends JPanel implements KeyListener
         
         // Affichage des monstres
         // Affichage du joueur
-        //g.drawImage(this.m_Img, 0, 0, null); 
+        g.drawImage(Interface.Images.Joueur, 
+                    this.m_MapCourrante.getPositionPersonnage().Colone*Constantes.LargeurCase,
+                    this.m_MapCourrante.getPositionPersonnage().Ligne*Constantes.HauteurCase,
+                    null);
         
     }
     
