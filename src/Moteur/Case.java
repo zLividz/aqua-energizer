@@ -21,6 +21,7 @@ public class Case
     public Case(Constantes.Case typeCase, int ligne, int colone)
     {
         this.m_TypeCase = typeCase;
+        this.m_Tombe = false;
         this.m_Position = new Position(ligne, colone);
         switch (this.m_TypeCase)
         {
@@ -88,6 +89,7 @@ public class Case
     public Case(Constantes.Case typeCase, Constantes.Position p)
     {
         this.m_TypeCase = typeCase;
+        this.m_Tombe = false;
         this.m_Position = new Position(p.Ligne, p.Colone);
         switch (this.m_TypeCase)
         {
@@ -172,6 +174,21 @@ public class Case
      * @return Retourne un booléen
      */
     public boolean estDeplacable() { return this.m_EstDeplacable; }
+    
+    
+    /** Propriétée pour savoir si la case est en chute */
+    protected boolean m_Tombe;
+    /** 
+     * Permet de savoir si la case tombe
+     * @return Booléen
+     */
+    public boolean getTombe() { return this.m_Tombe; }
+    /**
+     * Permet de définir si la case tombe
+     * @param value Booléen à positionner
+     */
+    public void setTombe(boolean value) { this.m_Tombe = value; }
+    
     
     /**
      * Donne la position de la case dans la map

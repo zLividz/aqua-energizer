@@ -43,8 +43,10 @@ public class Images
         Poisson.put(Moteur.Constantes.Direction.Gauche, ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "poisson_gauche.png")));
         Poisson.put(Moteur.Constantes.Direction.Droite, ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "poisson_droite.png")));
         
+        Explosion = ImageIO.read(new File("src" + File.separator + "Ressources" + File.separator + "img" + File.separator + "explosion.png"));
     }
-
+    /** L'image de l'explosion */
+    static public Image Explosion;
     /** L'image du Vide. */
     static public Image Joueur; 
     /** L'image du Vide. */

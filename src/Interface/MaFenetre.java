@@ -69,6 +69,7 @@ public class MaFenetre extends JPanel implements KeyListener
         this.add(this.m_BarreEnergie);
         this.add(this.m_Suicide);
     }
+     
     
     /**
      * Fonction en charge de faire recommencer le jeu, ou de faire continuer la partie en fonction de l'action

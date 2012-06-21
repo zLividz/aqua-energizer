@@ -70,10 +70,22 @@ public class Map
                                     }
                                 caseAModifier.add(c);
                             }
+                        
                     // On aplique les modifications
                     for(Case c : caseAModifier)
-                        // On pousse la case vers le bas
-                        Map.this.pousseCase(c.getPosition(), Constantes.Direction.Bas);
+                    {
+                        // On pousse la case vers le bas si le joueur n'est pas présent
+                        if(c.getTombe())
+                            Map.this.collisionAvecJoueur(c.getPosition());
+                        
+                        if(Map.this.pousseCase(c.getPosition(), Constantes.Direction.Bas))
+                            c.setTombe(true);
+                        else
+                        {
+                            if(c.getTombe()) // si elle tombais
+                                c.setTombe(false); // elle ne tombe plus
+                        }
+                    }
                     fenetre.repaint();
                     try { Thread.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
                 }
@@ -384,7 +396,17 @@ public class Map
         Case caseDestination = this.m_Map.get(nouvellePosition.Ligne).get(nouvellePosition.Colone);
         
         if(caseDestination.getType() != Constantes.Case.Vide)
-            return false;
+        { caseDestination.setTombe(false); return false; }
+        
+        if(caseDestination.getTombe())
+        {
+            this.collisionAvecJoueur(caseDestination.getPosition());
+            if(caseDestination.getType() == Constantes.Case.Bombe)
+            { this.explosion(caseDestination.getPosition()); return true; }
+        }
+        // La case ne tombe pas encore, elle est sensée tomber
+        if(caseDestination.getPosition().equals(this.getPositionPersonnage()))
+            return false; // elle ne tombe pas a travers joueur
         
         // Inversion des deux cases
         // La destination devient l'origine
