@@ -395,6 +395,12 @@ public class Map
      */
     public Position getPositionPersonnage() { return this.m_Personnage.getPosition(); }
     
+    /** 
+     * Retourne l'oxygene restante du joueur 
+     * @return retourne un entier 
+     */
+    public int getOxygene() { return this.m_Personnage.getOxygene(); }
+    
     /**
      * Ouvre les portes si la clef a été récupérée
      */
@@ -459,7 +465,7 @@ public class Map
     public boolean Sortie()
     {
         if(!this.Gagne()) return false;
-        return (this.m_Personnage.getPosition().addPosition(Direction.Bas) == this.m_PositionSortie);
+        return (this.m_Personnage.getPosition().addPosition(Direction.Bas).equals(this.m_PositionSortie));
     }
     private Position m_PositionSortie;
     

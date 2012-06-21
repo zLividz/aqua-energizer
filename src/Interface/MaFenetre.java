@@ -30,7 +30,22 @@ public class MaFenetre extends JPanel implements KeyListener
         setOpaque(true);
         addKeyListener(this);
         changementNiveau(1, 30);
-        
+    }
+    
+    public void verrificationFinNiveau()
+    {
+        System.out.println("Energie : " + this.m_MapCourrante.getEnergie());
+        if(this.m_MapCourrante.Sortie())
+        {
+            this.m_NiveauCourrant++;
+            this.changementNiveau(this.m_NiveauCourrant, this.m_MapCourrante.getOxygene() + 30);
+        }
+        if(this.m_MapCourrante.EstPerdue())
+        {
+            System.err.println("Fin de partie");
+            this.m_NiveauCourrant = 1;
+            this.changementNiveau(this.m_NiveauCourrant,  30);
+        }
     }
     
     /**
@@ -50,7 +65,7 @@ public class MaFenetre extends JPanel implements KeyListener
     // Champs
     private Map m_MapCourrante;
     private int m_NiveauCourrant;
-    
+    private Thread m_ThreadVerrif;
     
     // Méthodes pour JPanel et KeyListener
     
@@ -155,6 +170,7 @@ public class MaFenetre extends JPanel implements KeyListener
                 break;
         }
         this.repaint();
+        this.verrificationFinNiveau();
     }
 
     @Override
