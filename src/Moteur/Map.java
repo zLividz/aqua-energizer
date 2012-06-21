@@ -160,10 +160,6 @@ public class Map
                 Map.this.m_DeplacementMonstres.start();
             }
         });
-        action.start();
-        this.m_VerificationGravite.start();
-        
-        
         
         Reader r;
         try
@@ -241,6 +237,9 @@ public class Map
         if(this.m_PositionSortie == null)
             throw new LevelException("Le niveau ne contient pas de sortie");
         
+        // Démarrage des timers et listener
+        action.start();
+        this.m_VerificationGravite.start();
     }// Fin du constructeur
     
     /**
