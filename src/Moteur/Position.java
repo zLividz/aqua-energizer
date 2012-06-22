@@ -35,12 +35,16 @@ public class Position
         return p;
     }
     /**
-     * Retourne si la position passée en parramêtre est dans l'une des 8 cases autour de celle ci
+     * Retourne si la position passée en parramêtre est dans l'une des 4 cases autour de celle ci
      * @param p Position à tester
      * @return Retourne un booléen
      */
     public boolean contact(Position p)
-    { return ((Math.abs(p.Ligne-this.Ligne) < 2) && (Math.abs(p.Colone-this.Colone) < 2)); }
+    {
+        for(Direction d : Constantes.Direction.values())
+            if(this.equals(p.addPosition(d))) return true;
+        return false; 
+    }
     
     @Override public int hashCode()
     {

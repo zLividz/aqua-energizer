@@ -76,7 +76,7 @@ public class Map
                     {
                         // On pousse la case vers le bas si le joueur n'est pas présent
                         if(c.getTombe())
-                            Map.this.collisionAvecJoueur(c.getPosition());
+                            Map.this.collisionPersonnageParLeHaut(c.getPosition());
                         
                         if(Map.this.pousseCase(c.getPosition(), Constantes.Direction.Bas))
                             c.setTombe(true);
@@ -342,14 +342,27 @@ public class Map
     }
     
     /**
-     * Teste si la position p est dans l'une des 8 cases autour du joueur
+     * Teste si le joueur va mourrir parce qu'un objet lui tombe dessus
+     * @param p La position p de l'objet qui chute
+     */
+    public void collisionPersonnageParLeHaut(Position p)
+    {
+        if(this.getPositionPersonnage().equals(p.addPosition(Direction.Bas)))
+        {   explosion(this.getPositionPersonnage()); this.m_Perdu = true; }
+    }
+    
+    /**
+     * Teste si la position p est dans l'une des 4 cases autour du joueur
      * Met a jour si la map est perdue
      * @param p La Position à tester
      */
     public void collisionAvecJoueur(Position p)
     {
         if(this.getPositionPersonnage().contact(p))
-        { explosion(p); explosion(this.getPositionPersonnage()); this.m_Perdu = true; }
+        { 
+            explosion(this.getPositionPersonnage()); 
+            this.m_Perdu = true; 
+        }
     }
     
     /**
